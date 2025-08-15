@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PMS - Blue Sparrow Capital</title>
+
+  <!-- Tailwind & Icons -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <!-- Alignment helpers (shared width wrapper) -->
+  <style>
+    /* One consistent page width across header, main, and footer */
+    .site-container { max-width: 1200px; margin-inline: auto; padding-inline: 1.5rem; }
+    @media (min-width: 768px){ .site-container { padding-inline: 1.5rem; } }
+
+    .active-nav{ color:#FACC15; border-bottom:2px solid #FACC15; padding-bottom:2px; }
+    .chip{ display:inline-flex; align-items:center; gap:.5rem; border-radius:9999px; padding:.25rem .75rem; font-size:.875rem; border:1px solid #e5e7eb; }
+    .faq-answer{ max-height:0; overflow:hidden; transition:max-height .3s ease; }
+    .faq-item.active .faq-answer{ max-height:500px; }
+
+    /* Mobile card view for comparison table */
+    @media (max-width: 768px){
+      .resp-table{ display: grid; gap: 1rem; }
+      .resp-row{ background: white; border-radius: .75rem; box-shadow: 0 1px 6px rgba(0,0,0,.06); padding: 1rem; }
+      .resp-row h4{ font-weight: 700; color: #0f172a; margin-bottom: .5rem;}
+      .resp-grid{ display:grid; grid-template-columns: 1fr; gap:.5rem;}
+      .resp-item b{ display:block; color:#1e3a8a; margin-bottom:.15rem;}
+    }
+
+    /* FAQ styles (scoped) */
+    :root { --faqHeight: 22rem; }
+    #faq .faq-scroll { max-height: var(--faqHeight); overflow-y: auto; overscroll-behavior: contain; }
+    #faq #faq-answer { max-height: var(--faqHeight); overflow-y: auto; }
+    #faq .faq-scroll::-webkit-scrollbar,
+    #faq #faq-answer::-webkit-scrollbar { width: 8px; }
+    #faq .faq-scroll::-webkit-scrollbar-track,
+    #faq #faq-answer::-webkit-scrollbar-track { background: #e5e7eb; border-radius: 9999px; }
+    #faq .faq-scroll::-webkit-scrollbar-thumb,
+    #faq #faq-answer::-webkit-scrollbar-thumb { background: #1e3a8a; border-radius: 9999px; }
+    #faq .faq-scroll::-webkit-scrollbar-thumb:hover,
+    #faq #faq-answer::-webkit-scrollbar-thumb:hover { background: #1d4ed8; }
+    #faq .faq-num--active { background: #1e3a8a; color:#fff; border:0; }
+    #faq .faq-num--idle   { background:#eff6ff; color:#1e3a8a; border:1px solid #bfdbfe; }
+  </style>
+</head>
+
+<body class="bg-gradient-to-br from-blue-50 to-white min-h-screen font-sans text-gray-900 flex flex-col">
+
+  <!-- Header -->
+  <header class="bg-gradient-to-r from-blue-900 to-purple-900 text-white py-5 shadow-lg">
+    <div class="site-container flex flex-col md:flex-row items-center justify-between">
+      <a href="index.html#home" class="flex items-center gap-3">
+        <img src="assets/images/logo.png" alt="Blue Sparrow Capital Logo" class="h-16 w-auto" />
+        <span class="text-xl font-semibold hidden md:block">Blue Sparrow Capital</span>
+      </a>
+      <nav class="mt-3 md:mt-0 space-x-6 text-base md:text-lg font-semibold flex items-center">
+        <a href="index.html#home" class="hover:text-yellow-300 transition" data-nav="home">Home</a>
+        <a href="index.html#services" class="hover:text-yellow-300 transition" data-nav="services">Services</a>
+        <a href="index.html#about" class="hover:text-yellow-300 transition" data-nav="about">About</a>
+        <a href="index.html#contact" class="hover:text-yellow-300 transition" data-nav="contact">Contact</a>
+        <a href="index.html#contact" class="bg-yellow-400 text-blue-900 text-base md:text-lg px-5 py-2.5 rounded-full hover:bg-yellow-300 transition duration-300 ml-2 md:ml-4">
+          Join Us
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="pt-10 pb-8">
+    <div class="site-container">
+      <div class="max-w-3xl">
+        <h1 class="text-4xl md:text-5xl font-bold text-blue-900 leading-tight">Portfolio Management Services (PMS)</h1>
+        <p class="mt-4 text-gray-700 leading-relaxed">
+          PMS is a <b>premium, personalized</b> investment service where a <b>dedicated fund manager</b> actively manages
+          your portfolio in your own name. The strategy is tailored to your <b>risk profile</b>, <b>goals</b>, and <b>tax situation</b>,
+          often with a focused set of high-conviction holdings.
+        </p>
+        <div class="mt-5 flex flex-wrap gap-2">
+          <span class="chip bg-white"><i class="fa-solid fa-id-card-clip text-blue-900"></i> Separate Demat</span>
+          <span class="chip bg-white"><i class="fa-solid fa-chart-line text-emerald-700"></i> Active Management</span>
+          <span class="chip bg-white"><i class="fa-solid fa-shield text-purple-700"></i> Regulated</span>
+          <span class="chip bg-white"><i class="fa-solid fa-user-tie text-blue-800"></i> Dedicated Manager</span>
+        </div>
+        <div class="mt-6 flex gap-3">
+          <a href="#process" class="px-6 py-3 rounded-full border border-blue-900 text-blue-900 hover:bg-blue-50 transition">How it works</a>
+          <a href="index.html#contact" class="bg-gradient-to-r from-blue-900 to-purple-900 text-white px-6 py-3 rounded-full hover:from-blue-700 hover:to-purple-700 transition">Schedule a Call</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main -->
+  <main class="flex-1 pb-16">
+    <div class="site-container">
+
+      <!-- What is PMS -->
+      <section class="mb-12" id="what-is-pms">
+        <h2 class="text-2xl font-semibold text-blue-800 mb-3">What is PMS?</h2>
+        <p class="text-gray-700 leading-relaxed">
+          In PMS, every client has a <b>separate Demat and bank account</b>, and each transaction is executed in the
+          client’s own name. PMS portfolios are typically <b>concentrated (20–30 stocks)</b> to reflect high-conviction ideas.
+          Reporting is transaction-level, offering greater transparency and control.
+        </p>
+      </section>
+
+      <!-- Types of PMS -->
+      <section class="mb-12" id="types-of-pms">
+        <h2 class="text-2xl font-semibold text-blue-800 mb-3">Types of PMS</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="bg-white rounded-xl shadow p-6">
+            <h3 class="font-semibold text-lg text-blue-900">Discretionary PMS</h3>
+            <p class="text-gray-700 mt-1">
+              The portfolio manager takes buy/sell decisions on your behalf as per the agreed strategy and mandate.
+              Best for clients who prefer professional, end-to-end management.
+            </p>
+          </div>
+          <div class="bg-white rounded-xl shadow p-6">
+            <h3 class="font-semibold text-lg text-blue-900">Non-Discretionary PMS</h3>
+            <p class="text-gray-700 mt-1">
+              The manager provides recommendations, but final execution happens only after your approval.
+              Suits investors who want control over orders.
+            </p>
+          </div>
+          <div class="bg-white rounded-xl shadow p-6">
+            <h3 class="font-semibold text-lg text-blue-900">Advisory PMS</h3>
+            <p class="text-gray-700 mt-1">
+              The manager only gives advice; execution remains with you. Useful when you want guidance without
+              granting execution authority.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Process Flow -->
+      <section class="mb-12" id="process">
+        <h2 class="text-2xl font-semibold text-blue-800 mb-6">PMS Onboarding Process</h2>
+        <div class="grid md:grid-cols-5 gap-4">
+          <div class="bg-white rounded-xl shadow p-5">
+            <div class="text-3xl font-bold text-blue-900">1</div>
+            <div class="mt-2 font-semibold">Discovery & Suitability</div>
+            <p class="text-sm text-gray-600 mt-1">
+              We discuss goals, risk appetite, time horizon, and liquidity needs. A suitability assessment ensures PMS is appropriate for you.
+            </p>
+          </div>
+          <div class="bg-white rounded-xl shadow p-5">
+            <div class="text-3xl font-bold text-blue-900">2</div>
+            <div class="mt-2 font-semibold">Documentation</div>
+            <p class="text-sm text-gray-600 mt-1">
+              PMS agreement, KYC, and disclosures are completed. You receive scheme details, fee structure, and risk factors in writing.
+            </p>
+          </div>
+          <div class="bg-white rounded-xl shadow p-5">
+            <div class="text-3xl font-bold text-blue-900">3</div>
+            <div class="mt-2 font-semibold">Account Setup</div>
+            <p class="text-sm text-gray-600 mt-1">
+              Your dedicated Demat and linked bank account are set up. Execution authorization (PoA/TPIN) is configured securely.
+            </p>
+          </div>
+          <div class="bg-white rounded-xl shadow p-5">
+            <div class="text-3xl font-bold text-blue-900">4</div>
+            <div class="mt-2 font-semibold">Funding / Transfer</div>
+            <p class="text-sm text-gray-600 mt-1">
+              You fund the account (cash or approved securities). Minimum ticket is typically ₹50 lakh as per prevailing norms.
+            </p>
+          </div>
+          <div class="bg-white rounded-xl shadow p-5">
+            <div class="text-3xl font-bold text-blue-900">5</div>
+            <div class="mt-2 font-semibold">Portfolio Deployment</div>
+            <p class="text-sm text-gray-600 mt-1">
+              The manager deploys capital per strategy—phased entries, position sizing, and risk controls—with ongoing monitoring and reports.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Strategy Types -->
+      <section class="mb-12" id="strategy-types">
+        <h2 class="text-2xl font-semibold text-blue-800 mb-3">PMS Strategy Types</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="bg-white rounded-xl shadow p-6">
+            <h3 class="font-semibold text-lg text-blue-900">Large-Cap Quality</h3>
+            <p class="text-gray-700 mt-1">Leaders with robust balance sheets and predictable cash flows; typically lower drawdowns.</p>
+            <ul class="text-sm text-gray-600 mt-2 list-disc list-inside"><li>Core compounding</li><li>Lower turnover</li></ul>
+          </div>
+          <div class="bg-white rounded-xl shadow p-6">
+            <h3 class="font-semibold text-lg text-blue-900">Mid/Small-Cap Growth</h3>
+            <p class="text-gray-700 mt-1">High-growth themes with higher potential alpha—and higher volatility.</p>
+            <ul class="text-sm text-gray-600 mt-2 list-disc list-inside"><li>Secular trends</li><li>Active risk control</li></ul>
+          </div>
+          <div class="bg-white rounded-xl shadow p-6">
+            <h3 class="font-semibold text-lg text-blue-900">Thematic / Blend</h3>
+            <p class="text-gray-700 mt-1">Manufacturing, financials, consumption, or a flexible blend aligned to your goals.</p>
+            <ul class="text-sm text-gray-600 mt-2 list-disc list-inside"><li>Dynamic allocation</li><li>Goal-based</li></ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Comparison: MF vs PMS vs SIF vs AIF -->
+      <section class="mb-12" id="comparison">
+        <h2 class="text-2xl font-semibold text-blue-800 mb-3">Comparison: PMS, MF, SIF, AIF</h2>
+
+        <!-- Mobile cards -->
+        <div class="md:hidden resp-table">
+          <div class="resp-row">
+            <h4>Structure</h4>
+            <div class="resp-grid">
+              <div class="resp-item"><b>MF</b> Pooled units (NAV)</div>
+              <div class="resp-item"><b>PMS</b> Individual Demat; stock-level</div>
+              <div class="resp-item"><b>SIF</b> Custom/structured vehicles</div>
+              <div class="resp-item"><b>AIF</b> Cat I/II/III pooled funds</div>
+            </div>
+          </div>
+          <div class="resp-row">
+            <h4>Minimum Investment</h4>
+            <div class="resp-grid">
+              <div class="resp-item"><b>MF</b> Very low (₹100–₹500+)</div>
+              <div class="resp-item"><b>PMS</b> Typically ₹50 lakh+</div>
+              <div class="resp-item"><b>SIF</b> High, varies by product</div>
+              <div class="resp-item"><b>AIF</b> Usually ₹1 crore (norms)</div>
+            </div>
+          </div>
+          <div class="resp-row">
+            <h4>Customization</h4>
+            <div class="resp-grid">
+              <div class="resp-item"><b>MF</b> Low–Medium</div>
+              <div class="resp-item"><b>PMS</b> High (bespoke)</div>
+              <div class="resp-item"><b>SIF</b> High (deal-specific)</div>
+              <div class="resp-item"><b>AIF</b> Medium (scheme-based)</div>
+            </div>
+          </div>
+          <div class="resp-row">
+            <h4>Transparency</h4>
+            <div class="resp-grid">
+              <div class="resp-item"><b>MF</b> Factsheets/NAV</div>
+              <div class="resp-item"><b>PMS</b> Transaction-level</div>
+              <div class="resp-item"><b>SIF</b> Term-sheet driven</div>
+              <div class="resp-item"><b>AIF</b> Scheme reports</div>
+            </div>
+          </div>
+          <div class="resp-row">
+            <h4>Liquidity</h4>
+            <div class="resp-grid">
+              <div class="resp-item"><b>MF</b> High (open-end)</div>
+              <div class="resp-item"><b>PMS</b> Market execution; T+ cycles</div>
+              <div class="resp-item"><b>SIF</b> Limited/tenor-bound</div>
+              <div class="resp-item"><b>AIF</b> Limited; fund terms apply</div>
+            </div>
+          </div>
+          <div class="resp-row">
+            <h4>Volatility</h4>
+            <div class="resp-grid">
+              <div class="resp-item"><b>MF</b> Diversified</div>
+              <div class="resp-item"><b>PMS</b> Focused (higher)</div>
+              <div class="resp-item"><b>SIF</b> Product dependent</div>
+              <div class="resp-item"><b>AIF</b> Strategy dependent</div>
+            </div>
+          </div>
+          <p class="text-xs text-gray-500">*Minimums/features are indicative and may change by scheme and regulations.</p>
+        </div>
+
+        <!-- Desktop table -->
+        <div class="hidden md:block overflow-x-auto bg-white rounded-xl shadow">
+          <table class="w-full text-left md:text-base text-sm leading-6 table-fixed min-w-[980px]">
+            <colgroup>
+              <col class="w-[18%]"><col class="w-[20%]"><col class="w-[20%]"><col class="w-[21%]"><col class="w-[21%]">
+            </colgroup>
+            <thead class="bg-blue-50 text-blue-900">
+              <tr>
+                <th class="p-4 font-semibold">Feature</th>
+                <th class="p-4 font-semibold">Mutual Fund (MF)</th>
+                <th class="p-4 font-semibold">PMS</th>
+                <th class="p-4 font-semibold">SIF (Structured Investment)</th>
+                <th class="p-4 font-semibold">AIF (Alt. Investment Fund)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="odd:bg-white even:bg-gray-50">
+                <td class="p-4">Structure</td>
+                <td class="p-4">Pooled units (NAV)</td>
+                <td class="p-4">Individual Demat; stock-level ownership</td>
+                <td class="p-4">Custom/structured vehicles</td>
+                <td class="p-4">Category I/II/III pooled funds</td>
+              </tr>
+              <tr class="odd:bg-white even:bg-gray-50">
+                <td class="p-4">Minimum Investment</td>
+                <td class="p-4">Very low (₹100–₹500+)</td>
+                <td class="p-4">Typically ₹50 lakh+</td>
+                <td class="p-4">High; varies by product</td>
+                <td class="p-4">Usually ₹1 crore (norms)</td>
+              </tr>
+              <tr class="odd:bg-white even:bg-gray-50">
+                <td class="p-4">Customization</td>
+                <td class="p-4">Low–Medium</td>
+                <td class="p-4">High (bespoke)</td>
+                <td class="p-4">High (deal-specific)</td>
+                <td class="p-4">Medium (scheme-based)</td>
+              </tr>
+              <tr class="odd:bg-white even:bg-gray-50">
+                <td class="p-4">Transparency</td>
+                <td class="p-4">Factsheets/NAV-based</td>
+                <td class="p-4">Transaction-level reporting</td>
+                <td class="p-4">Term-sheet driven</td>
+                <td class="p-4">Periodic scheme reports</td>
+              </tr>
+              <tr class="odd:bg-white even:bg-gray-50">
+                <td class="p-4">Liquidity</td>
+                <td class="p-4">High (open-end funds)</td>
+                <td class="p-4">Market execution; T+ cycles</td>
+                <td class="p-4">Limited; tenor-bound</td>
+                <td class="p-4">Limited; fund terms apply</td>
+              </tr>
+              <tr class="odd:bg-white even:bg-gray-50">
+                <td class="p-4">Volatility</td>
+                <td class="p-4">Diversified portfolio</td>
+                <td class="p-4">Focused portfolio (higher)</td>
+                <td class="p-4">Product dependent</td>
+                <td class="p-4">Strategy dependent</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="hidden md:block text-xs text-gray-500 mt-3">*Minimums/features are indicative and may change by scheme and regulations.</p>
+      </section>
+
+      <!-- Taxation -->
+      <section class="mb-12" id="taxation">
+        <h2 class="text-2xl font-semibold text-blue-800 mb-3">Taxation (Equity-Oriented Example)</h2>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-white rounded-xl shadow p-6">
+            <h3 class="font-semibold text-lg text-blue-900">How gains are taxed</h3>
+            <ul class="text-gray-700 mt-2 list-disc list-inside space-y-1">
+              <li><b>LTCG (held &gt; 12 months):</b> 10% on gains exceeding ₹1 lakh in a financial year</li>
+              <li><b>STCG (held ≤ 12 months):</b> 15%</li>
+              <li><b>Dividends:</b> Taxed as per investor’s slab</li>
+            </ul>
+            <p class="text-xs text-gray-500 mt-3">Gains are computed based on actual trade dates in your account.</p>
+          </div>
+          <div class="bg-white rounded-xl shadow p-6">
+            <h3 class="font-semibold text-lg text-blue-900">Illustration</h3>
+            <p class="text-gray-700">
+              Suppose equity shares bought in April 2024 are sold in June 2025 at a profit of ₹2,50,000.
+              After the ₹1,00,000 annual exemption, ₹1,50,000 is taxed at 10% (plus applicable surcharge & cess).
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Risks -->
+      <section class="mb-12" id="risks">
+        <h2 class="text-2xl font-semibold text-blue-800 mb-3">Risks & Considerations</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="bg-white rounded-xl shadow p-6">
+            <h3 class="font-semibold text-lg text-blue-900">Market Risk</h3>
+            <p class="text-gray-700 mt-1">Equity-oriented portfolios can be volatile; near-term drawdowns are possible.</p>
+          </div>
+          <div class="bg-white rounded-xl shadow p-6">
+            <h3 class="font-semibold text-lg text-blue-900">Concentration Risk</h3>
+            <p class="text-gray-700 mt-1">Focused portfolios (20–30 stocks) may carry higher stock-specific risk.</p>
+          </div>
+          <div class="bg-white rounded-xl shadow p-6">
+            <h3 class="font-semibold text-lg text-blue-900">Liquidity & Costs</h3>
+            <p class="text-gray-700 mt-1">Execution, brokerage, taxes, and exit timing can impact realized returns.</p>
+          </div>
+        </div>
+        <div class="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded-xl text-sm text-yellow-900">
+          <b>Important:</b> Past performance is not indicative of future returns. No returns are guaranteed. Read scheme documents carefully.
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="mb-12" id="faq" aria-labelledby="faq-title">
+        <div class="text-center mb-6">
+          <h2 id="faq-title" class="text-3xl font-bold text-blue-900">Your Right To Know</h2>
+          <p class="text-gray-600 mt-2">We’ve answered the most common questions about PMS</p>
+        </div>
+
+        <div class="bg-blue-50 rounded-2xl p-6 md:p-10">
+          <div class="grid md:grid-cols-2 gap-8 items-start">
+            <!-- Left: question list -->
+            <div class="bg-white rounded-2xl shadow p-4 md:p-5">
+              <div id="faq-list" class="faq-scroll space-y-2" role="listbox" aria-label="FAQ questions">
+                <!-- Buttons 1–10 -->
+                <button type="button" class="faq-btn flex w-full items-center gap-4 rounded-xl p-3 hover:bg-blue-50 transition" data-id="1" role="option">
+                  <span class="faq-num faq-num--idle grid place-items-center w-12 h-12 rounded-full text-xl font-bold shrink-0">1</span>
+                  <span class="text-left text-gray-800 font-medium">What is Portfolio Management Services (PMS)?</span>
+                </button>
+                <button type="button" class="faq-btn flex w-full items-center gap-4 rounded-xl p-3 hover:bg-blue-50 transition" data-id="2" role="option">
+                  <span class="faq-num faq-num--idle grid place-items-center w-12 h-12 rounded-full text-xl font-bold shrink-0">2</span>
+                  <span class="text-left text-gray-800 font-medium">How is PMS different from Mutual Funds?</span>
+                </button>
+                <button type="button" class="faq-btn flex w-full items-center gap-4 rounded-xl p-3 hover:bg-blue-50 transition" data-id="3" role="option">
+                  <span class="faq-num faq-num--idle grid place-items-center w-12 h-12 rounded-full text-xl font-bold shrink-0">3</span>
+                  <span class="text-left text-gray-800 font-medium">Who should consider investing in PMS?</span>
+                </button>
+                <button type="button" class="faq-btn flex w-full items-center gap-4 rounded-xl p-3 hover:bg-blue-50 transition" data-id="4" role="option">
+                  <span class="faq-num faq-num--idle grid place-items-center w-12 h-12 rounded-full text-xl font-bold shrink-0">4</span>
+                  <span class="text-left text-gray-800 font-medium">What are the types of PMS?</span>
+                </button>
+                <button type="button" class="faq-btn flex w-full items-center gap-4 rounded-xl p-3 hover:bg-blue-50 transition" data-id="5" role="option">
+                  <span class="faq-num faq-num--idle grid place-items-center w-12 h-12 rounded-full text-xl font-bold shrink-0">5</span>
+                  <span class="text-left text-gray-800 font-medium">What is the minimum investment for PMS?</span>
+                </button>
+                <button type="button" class="faq-btn flex w-full items-center gap-4 rounded-xl p-3 hover:bg-blue-50 transition" data-id="6" role="option">
+                  <span class="faq-num faq-num--idle grid place-items-center w-12 h-12 rounded-full text-xl font-bold shrink-0">6</span>
+                  <span class="text-left text-gray-800 font-medium">How are fees structured in PMS?</span>
+                </button>
+                <button type="button" class="faq-btn flex w-full items-center gap-4 rounded-xl p-3 hover:bg-blue-50 transition" data-id="7" role="option">
+                  <span class="faq-num faq-num--idle grid place-items-center w-12 h-12 rounded-full text-xl font-bold shrink-0">7</span>
+                  <span class="text-left text-gray-800 font-medium">How does taxation work for PMS?</span>
+                </button>
+                <button type="button" class="faq-btn flex w-full items-center gap-4 rounded-xl p-3 hover:bg-blue-50 transition" data-id="8" role="option">
+                  <span class="faq-num faq-num--idle grid place-items-center w-12 h-12 rounded-full text-xl font-bold shrink-0">8</span>
+                  <span class="text-left text-gray-800 font-medium">What are the key risks in PMS?</span>
+                </button>
+                <button type="button" class="faq-btn flex w-full items-center gap-4 rounded-xl p-3 hover:bg-blue-50 transition" data-id="9" role="option">
+                  <span class="faq-num faq-num--idle grid place-items-center w-12 h-12 rounded-full text-xl font-bold shrink-0">9</span>
+                  <span class="text-left text-gray-800 font-medium">Can I view my holdings and transactions in real time?</span>
+                </button>
+                <button type="button" class="faq-btn flex w-full items-center gap-4 rounded-xl p-3 hover:bg-blue-50 transition" data-id="10" role="option">
+                  <span class="faq-num faq-num--idle grid place-items-center w-12 h-12 rounded-full text-xl font-bold shrink-0">10</span>
+                  <span class="text-left text-gray-800 font-medium">How does the PMS onboarding process work?</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Right: Answer panel -->
+            <div id="faq-answer" class="bg-white rounded-2xl shadow p-6 md:p-8" aria-live="polite"></div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer (aligned using .site-container) -->
+  <footer class="bg-[#032B73] text-white pt-12">
+    <div class="site-container">
+      <div class="grid md:grid-cols-4 gap-10 text-sm pb-10">
+        <div class="text-center md:text-left">
+          <img src="assets/images/logo.png" class="h-16 mx-auto md:mx-0 mb-2" alt="Logo" />
+          <h2 class="text-lg font-semibold mt-2">Blue Sparrow Capital</h2>
+          <p class="italic text-yellow-400 text-sm mb-2">Where Your Money Finds Wings</p>
+          <p class="mb-4">Your trusted partner for comprehensive financial planning and wealth management solutions.</p>
+          <div class="flex justify-center md:justify-start space-x-4 text-lg mt-2">
+            <a href="#" class="hover:text-yellow-400" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="hover:text-yellow-400" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+            <a href="#" class="hover:text-yellow-400" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="hover:text-yellow-400" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="hover:text-yellow-400" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="font-bold text-lg text-yellow-400 mb-3">Quick Links</h3>
+          <ul class="space-y-2">
+            <li><a href="index.html#home" class="hover:underline">Home</a></li>
+            <li><a href="index.html#about" class="hover:underline">About Us</a></li>
+            <li><a href="index.html#services" class="hover:underline">Products & Services</a></li>
+            <li><a href="index.html#contact" class="hover:underline">Contact</a></li>
+            <li><a href="#" class="hover:underline">Privacy Policy</a></li>
+            <li><a href="#" class="hover:underline">Terms & Conditions</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-bold text-lg text-yellow-400 mb-3">Products</h3>
+          <ul class="space-y-2">
+            <li>Mutual Funds</li>
+            <li>Insurance Solutions</li>
+            <li>Portfolio Management</li>
+            <li>Fixed Deposits</li>
+            <li>Unlisted IPO</li>
+            <li>Loan Solutions</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-bold text-lg text-yellow-400 mb-3">Contact Info</h3>
+          <p class="mb-2"><i class="fas fa-map-marker-alt mr-2"></i>123 Financial District, BKC, Mumbai</p>
+          <p class="mb-2"><i class="fas fa-phone-alt mr-2"></i>+91 98765 43210</p>
+          <p><i class="fas fa-envelope mr-2"></i>info@bluesparrowcapital.com</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="border-t border-white/20 mt-6">
+      <div class="site-container">
+        <div class="text-center text-white/70 text-xs pt-4 pb-6">
+          &copy; 2025 <strong>Blue Sparrow Capital</strong>. All Rights Reserved. | ARN-12345 | AMFI Registered Mutual Fund Distributor | SEBI Registered Investment Advisor
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Mark Services as active in the header for this page
+    (function(){
+      const servicesLink = document.querySelector('a[data-nav="services"]');
+      if (servicesLink) servicesLink.classList.add('active-nav');
+    })();
+  </script>
+
+  <script>
+    // FAQ behavior
+    (function(){
+      const answers = {
+        1:{q:"What is Portfolio Management Services (PMS)?",a:"PMS is a premium, personalized service where a dedicated manager actively runs your portfolio in your own Demat account. Portfolios are typically focused (20–30 stocks) with transaction-level transparency and tailored risk management aligned to your goals and tax profile."},
+        2:{q:"How is PMS different from Mutual Funds?",a:"Mutual funds are pooled vehicles where you own units; PMS holds securities directly in your Demat in your name. PMS portfolios are more concentrated and provide transaction-level reporting; MFs disclose via NAV/factsheets. Customization is typically higher in PMS."},
+        3:{q:"Who should consider investing in PMS?",a:"Investors with ₹50 lakh+ investable surplus, a 3–5+ year horizon, comfort with equity volatility, and a preference for a focused, actively managed, and transparent portfolio structure."},
+        4:{q:"What are the types of PMS?",a:"Discretionary: the manager executes as per mandate without order-wise approval. Non-Discretionary: the manager recommends but executes only after your approval. Advisory: the manager advises; execution remains with you."},
+        5:{q:"What is the minimum investment for PMS?",a:"Typically ₹50,00,000 as per prevailing norms. Actual minimums and terms may vary by provider and scheme."},
+        6:{q:"How are fees structured in PMS?",a:"Common models include (i) fixed management fee, (ii) hybrid—fixed plus performance fee with hurdle or high-watermark, and (iii) purely performance-linked models. Applicable taxes (e.g., GST) and brokerage/other charges also apply."},
+        7:{q:"How does taxation work for PMS?",a:"Capital gains are computed for each actual sale in your account. Equity LTCG (held >12 months) is generally taxed at 10% on gains over ₹1 lakh; STCG (≤12 months) at 15%. Dividends are taxed at your slab. Surcharge and cess may apply."},
+        8:{q:"What are the key risks in PMS?",a:"Market risk (equity volatility), concentration risk (focused portfolios carry higher stock-specific risk), and liquidity/cost impact (brokerage, taxes, exit timing). Past performance is not indicative of future results and no returns are guaranteed."},
+        9:{q:"Can I view my holdings and transactions in real time?",a:"Yes. Because securities are held in your Demat, you can see holdings and movements in real time along with periodic statements and reports from the PMS provider."},
+        10:{q:"How does the PMS onboarding process work?",a:"We assess goals and suitability, complete documentation and disclosures, open/link your Demat & bank accounts, fund the account (cash or approved securities), and then deploy capital as per the chosen strategy with ongoing monitoring and reports."}
+      };
+
+      const root = document.getElementById('faq');
+      const list = root.querySelector('#faq-list');
+      const answerBox = root.querySelector('#faq-answer');
+
+      function setActive(id) {
+        const key = String(id);
+        if (!answers[key]) return;
+
+        // Update selection state & number chip styles
+        root.querySelectorAll('.faq-btn').forEach(btn => {
+          const on = btn.dataset.id === key;
+          btn.setAttribute('aria-selected', on ? 'true' : 'false');
+          const num = btn.querySelector('.faq-num');
+          if (num) {
+            num.classList.toggle('faq-num--active', on);
+            num.classList.toggle('faq-num--idle', !on);
+          }
+        });
+
+        // Update answer panel
+        const { q, a } = answers[key];
+        answerBox.innerHTML = `
+          <h3 class="text-xl font-semibold text-blue-900">${q}</h3>
+          <p class="text-gray-700 mt-3 leading-relaxed">${a}</p>
+        `;
+      }
+
+      // Click selection
+      list.addEventListener('click', (e) => {
+        const btn = e.target.closest('.faq-btn');
+        if (!btn || !list.contains(btn)) return;
+        e.preventDefault();
+        setActive(btn.dataset.id);
+      });
+
+      // Keyboard navigation
+      list.addEventListener('keydown', (e) => {
+        const items = Array.from(list.querySelectorAll('.faq-btn'));
+        const current = items.findIndex(b => b.getAttribute('aria-selected') === 'true');
+        if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+          e.preventDefault();
+          const next = items[(current + 1 + items.length) % items.length];
+          next.focus(); setActive(next.dataset.id);
+        } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+          e.preventDefault();
+          const prev = items[(current - 1 + items.length) % items.length];
+          prev.focus(); setActive(prev.dataset.id);
+        } else if (e.key === 'Home') {
+          e.preventDefault(); items[0].focus(); setActive(items[0].dataset.id);
+        } else if (e.key === 'End') {
+          e.preventDefault(); items[items.length - 1].focus(); setActive(items[items.length - 1].dataset.id);
+        }
+      });
+
+      // Initialize
+      setActive(1);
+    })();
+  </script>
+</body>
+</html>

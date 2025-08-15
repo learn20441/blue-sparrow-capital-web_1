@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bonds - Blue Sparrow Capital</title>
+
+  <!-- Tailwind & Icons -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <!-- Shared helpers (same as PMS page) -->
+  <style>
+    .site-container { max-width: 1200px; margin-inline: auto; padding-inline: 1.5rem; }
+    @media (min-width: 768px){ .site-container { padding-inline: 1.5rem; } }
+
+    .active-nav{ color:#FACC15; border-bottom:2px solid #FACC15; padding-bottom:2px; }
+    .chip{ display:inline-flex; align-items:center; gap:.5rem; border-radius:9999px; padding:.25rem .75rem; font-size:.875rem; border:1px solid #e5e7eb; }
+
+    .card{ background:#fff; border-radius:1rem; box-shadow:0 1px 6px rgba(0,0,0,.06); border:1px solid #e5e7eb; }
+  </style>
+</head>
+
+<body class="bg-gradient-to-br from-blue-50 to-white min-h-screen font-sans text-gray-900 flex flex-col">
+
+  <!-- Header (same as PMS) -->
+  <header class="bg-gradient-to-r from-blue-900 to-purple-900 text-white py-5 shadow-lg">
+    <div class="site-container flex flex-col md:flex-row items-center justify-between">
+      <a href="index.html#home" class="flex items-center gap-3">
+        <img src="assets/images/logo.png" alt="Blue Sparrow Capital Logo" class="h-16 w-auto" />
+        <span class="text-xl font-semibold hidden md:block">Blue Sparrow Capital</span>
+      </a>
+      <nav class="mt-3 md:mt-0 space-x-6 text-base md:text-lg font-semibold flex items-center">
+        <a href="index.html#home" class="hover:text-yellow-300 transition" data-nav="home">Home</a>
+        <a href="index.html#services" class="hover:text-yellow-300 transition" data-nav="services">Services</a>
+        <a href="index.html#about" class="hover:text-yellow-300 transition" data-nav="about">About</a>
+        <a href="index.html#contact" class="hover:text-yellow-300 transition" data-nav="contact">Contact</a>
+        <a href="index.html#contact" class="bg-yellow-400 text-blue-900 text-base md:text-lg px-5 py-2.5 rounded-full hover:bg-yellow-300 transition duration-300 ml-2 md:ml-4">
+          Join Us
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="pt-10 pb-6">
+    <div class="site-container">
+      <div class="max-w-3xl">
+        <h1 class="text-4xl md:text-5xl font-bold text-blue-900 leading-tight">Explore our fixed income assets</h1>
+        <p class="mt-4 text-gray-700 leading-relaxed">
+          Explore our curated selection of bond investments to shortlist options that match your income needs and risk profile.
+        </p>
+        <div class="mt-5 flex flex-wrap gap-2">
+          <span class="chip bg-white"><i class="fa-solid fa-shield text-blue-900"></i> Regulated</span>
+          <span class="chip bg-white"><i class="fa-solid fa-indian-rupee-sign text-emerald-700"></i> Predictable Income</span>
+          <span class="chip bg-white"><i class="fa-solid fa-scale-balanced text-purple-700"></i> Diversification</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="flex-1 pb-16">
+    <div class="site-container">
+
+      <!-- Filter chips (FD intentionally excluded) -->
+      <section class="card p-4 md:p-6 bg-blue-50/60 border-blue-100">
+        <div class="flex flex-wrap gap-3">
+          <div class="chip bg-white"><span>🔖</span><span>Active Deals</span></div>
+          <div class="chip bg-white"><span>📈</span><span>11%+ Yield Bonds</span></div>
+          <div class="chip bg-white"><span>📄</span><span>Bonds at ₹10K</span></div>
+          <div class="chip bg-yellow-50 border-yellow-300"><span>🗓️</span><span>Bonds for Monthly Income</span></div>
+          <div class="chip bg-white"><span>🚀</span><span>NCD IPO</span></div>
+        </div>
+      </section>
+
+      <!-- Monthly Income list (static sample rows) -->
+      <section class="mt-8">
+        <h2 class="text-2xl md:text-3xl font-extrabold text-blue-900 mb-4">Steady Returns Every Month</h2>
+
+        <div class="space-y-4">
+          <!-- Row 1 -->
+          <div class="card p-4 md:p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div class="min-w-0">
+              <div class="text-sm inline-flex items-center gap-2 mb-1">
+                <span class="px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200 text-xs">AMO</span>
+                <span class="text-gray-400" title="Info">ℹ️</span>
+              </div>
+              <h3 class="font-semibold text-lg md:text-xl truncate">MUTHOOTTU MINI FINANCIERS LTD</h3>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:items-center">
+              <div class="text-center">
+                <div class="text-xs text-gray-500">Returns</div>
+                <div class="text-xl font-bold text-amber-600">11.13%</div>
+              </div>
+              <div class="text-center">
+                <div class="text-xs text-gray-500">Credit Rating</div>
+                <div class="font-semibold">ICRA A</div>
+              </div>
+              <div class="text-center">
+                <div class="text-xs text-gray-500">Payout</div>
+                <div class="font-semibold">Monthly</div>
+              </div>
+              <div class="text-center">
+                <div class="text-xs text-gray-500">Maturity Date</div>
+                <div class="font-semibold">12-Jun-2027</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Row 2 -->
+          <div class="card p-4 md:p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div class="min-w-0">
+              <div class="text-sm inline-flex items-center gap-2 mb-1">
+                <span class="px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200 text-xs">AMO</span>
+                <span class="text-gray-400" title="Info">ℹ️</span>
+              </div>
+              <h3 class="font-semibold text-lg md:text-xl truncate">ANNAPURNA FINANCE PRIVATE LIMITED</h3>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:items-center">
+              <div class="text-center">
+                <div class="text-xs text-gray-500">Returns</div>
+                <div class="text-xl font-bold text-amber-600">11.10%</div>
+              </div>
+              <div class="text-center">
+                <div class="text-xs text-gray-500">Credit Rating</div>
+                <div class="font-semibold">ICRA A-</div>
+              </div>
+              <div class="text-center">
+                <div class="text-xs text-gray-500">Payout</div>
+                <div class="font-semibold">Monthly</div>
+              </div>
+              <div class="text-center">
+                <div class="text-xs text-gray-500">Maturity Date</div>
+                <div class="font-semibold">22-Jul-2027</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Product sections (no FD) -->
+      <section class="mt-10 grid lg:grid-cols-2 gap-6">
+        <article class="card p-6">
+          <h3 class="text-xl font-bold text-blue-900">Listed Corporate Bonds</h3>
+          <p class="mt-2 text-gray-700">
+            Debt instruments issued by reputed companies, offering fixed returns as high as <b>15% p.a.</b>
+            Good for predictable income with moderate risk.
+          </p>
+          <ul class="mt-3 list-disc list-inside text-gray-700 space-y-1">
+            <li>Periodic coupon payouts</li>
+            <li>Exchange-tradable for liquidity</li>
+            <li>Diversified issuers & sectors</li>
+          </ul>
+        </article>
+
+        <article class="card p-6">
+          <h3 class="text-xl font-bold text-blue-900">NCD IPOs (Non-Convertible Debentures)</h3>
+          <p class="mt-2 text-gray-700">
+            Start investing from <b>₹10,000</b> and pay via UPI. Typically higher yields than savings products
+            with defined tenor and payout schedules.
+          </p>
+          <ul class="mt-3 list-disc list-inside text-gray-700 space-y-1">
+            <li>Credit-rated for transparency</li>
+            <li>Multiple payout options (Monthly/Quarterly)</li>
+            <li>Short to long tenures available</li>
+          </ul>
+        </article>
+
+        <article class="card p-6">
+          <h3 class="text-xl font-bold text-blue-900">Sovereign Gold Bonds (SGBs)</h3>
+          <p class="mt-2 text-gray-700">
+            Government of India backed: earn <b>2.5% yearly interest</b> plus gold price exposure—no storage hassles.
+          </p>
+          <ul class="mt-3 list-disc list-inside text-gray-700 space-y-1">
+            <li>Tax-efficient redemption (per prevailing rules)</li>
+            <li>Tradable post lock-in</li>
+            <li>Efficient alternative to physical gold</li>
+          </ul>
+        </article>
+
+        <article class="card p-6">
+          <h3 class="text-xl font-bold text-blue-900">Government Securities (G-Secs)</h3>
+          <p class="mt-2 text-gray-700">
+            Bonds issued by Central or State Governments—suited for conservative investors seeking stability and steady income.
+          </p>
+          <ul class="mt-3 list-disc list-inside text-gray-700 space-y-1">
+            <li>Low default risk; sovereign backing</li>
+            <li>Wide choice of maturities</li>
+            <li>Useful for diversification & laddering</li>
+          </ul>
+        </article>
+      </section>
+
+      <!-- Why Bonds -->
+      <section class="mt-10">
+        <div class="card p-6 md:p-8">
+          <h3 class="text-2xl font-extrabold text-blue-900">Why invest in bonds?</h3>
+          <div class="mt-4 grid md:grid-cols-3 gap-6">
+            <div>
+              <div class="text-lg font-semibold">Predictable income</div>
+              <p class="text-gray-700 mt-1">Get fixed coupon payouts on a defined schedule.</p>
+            </div>
+            <div>
+              <div class="text-lg font-semibold">Risk diversification</div>
+              <p class="text-gray-700 mt-1">Reduce equity volatility by adding fixed income.</p>
+            </div>
+            <div>
+              <div class="text-lg font-semibold">Capital preservation</div>
+              <p class="text-gray-700 mt-1">Prioritise stability while targeting steady returns.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer (same as PMS) -->
+  <footer class="bg-[#032B73] text-white pt-12">
+    <div class="site-container">
+      <div class="grid md:grid-cols-4 gap-10 text-sm pb-10">
+        <div class="text-center md:text-left">
+          <img src="assets/images/logo.png" class="h-16 mx-auto md:mx-0 mb-2" alt="Logo" />
+          <h2 class="text-lg font-semibold mt-2">Blue Sparrow Capital</h2>
+          <p class="italic text-yellow-400 text-sm mb-2">Where Your Money Finds Wings</p>
+          <p class="mb-4">Your trusted partner for comprehensive financial planning and wealth management solutions.</p>
+          <div class="flex justify-center md:justify-start space-x-4 text-lg mt-2">
+            <a href="#" class="hover:text-yellow-400" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="hover:text-yellow-400" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+            <a href="#" class="hover:text-yellow-400" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="hover:text-yellow-400" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="hover:text-yellow-400" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="font-bold text-lg text-yellow-400 mb-3">Quick Links</h3>
+          <ul class="space-y-2">
+            <li><a href="index.html#home" class="hover:underline">Home</a></li>
+            <li><a href="index.html#about" class="hover:underline">About Us</a></li>
+            <li><a href="index.html#services" class="hover:underline">Products & Services</a></li>
+            <li><a href="index.html#contact" class="hover:underline">Contact</a></li>
+            <li><a href="#" class="hover:underline">Privacy Policy</a></li>
+            <li><a href="#" class="hover:underline">Terms & Conditions</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-bold text-lg text-yellow-400 mb-3">Products</h3>
+          <ul class="space-y-2">
+            <li>Mutual Funds</li>
+            <li>Insurance Solutions</li>
+            <li>Portfolio Management</li>
+            <li>Fixed Deposits</li>
+            <li>Unlisted IPO</li>
+            <li>Loan Solutions</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-bold text-lg text-yellow-400 mb-3">Contact Info</h3>
+          <p class="mb-2"><i class="fas fa-map-marker-alt mr-2"></i>123 Financial District, BKC, Mumbai</p>
+          <p class="mb-2"><i class="fas fa-phone-alt mr-2"></i>+91 98765 43210</p>
+          <p><i class="fas fa-envelope mr-2"></i>info@bluesparrowcapital.com</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="border-t border-white/20 mt-6">
+      <div class="site-container">
+        <div class="text-center text-white/70 text-xs pt-4 pb-6">
+          &copy; 2025 <strong>Blue Sparrow Capital</strong>. All Rights Reserved. | ARN-12345 | AMFI Registered Mutual Fund Distributor | SEBI Registered Investment Advisor
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Mark Services as active in the header for this page
+    (function(){
+      const servicesLink = document.querySelector('a[data-nav="services"]');
+      if (servicesLink) servicesLink.classList.add('active-nav');
+    })();
+  </script>
+</body>
+</html>

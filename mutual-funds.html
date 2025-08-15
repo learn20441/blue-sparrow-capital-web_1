@@ -1,0 +1,423 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mutual Funds – Blue Sparrow Capital</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-white text-gray-900">
+  <!-- HEADER -->
+  <header class="bg-gradient-to-r from-blue-900 to-purple-900 text-white py-6 shadow-lg">
+    <div class="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between">
+      <a href="index.html">
+        <img src="assets/images/logo.png" alt="Blue Sparrow Capital Logo" class="h-24 w-auto mb-2 md:mb-0" />
+      </a>
+      <nav class="mt-4 md:mt-0 space-x-8 text-lg font-semibold flex items-center">
+        <a href="index.html#home" class="hover:text-yellow-300 transition">Home</a>
+        <a href="index.html#services" class="hover:text-yellow-300 transition">Services</a>
+        <a href="index.html#about" class="hover:text-yellow-300 transition">About</a>
+        <a href="#contact" class="hover:text-yellow-300 transition">Contact</a>
+        <button
+          onclick="document.getElementById('joinModal').showModal()"
+          class="bg-yellow-400 text-blue-900 text-lg px-6 py-3 rounded-full hover:bg-yellow-300 transition duration-300 ml-4">
+          Join Us
+        </button>
+      </nav>
+    </div>
+
+    <!-- Join Modal -->
+    <dialog id="joinModal" class="rounded-xl p-4 backdrop:bg-black/40 max-w-2xl w-full">
+      <form method="dialog" class="bg-white p-6 rounded-lg shadow-lg space-y-4">
+        <h2 class="text-2xl font-bold text-blue-900 mb-4">Join as Agent</h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <input type="text" placeholder="Full Name" class="border p-2 rounded w-full" required />
+          <input type="tel" placeholder="Mobile Number" class="border p-2 rounded w-full" required />
+          <input type="email" placeholder="Email Address" class="border p-2 rounded w-full"/>
+        </div>
+
+        <h3 class="text-lg font-semibold text-blue-800 mt-4">Nominee Details</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <input type="text" placeholder="Nominee Name" class="border p-2 rounded w-full" required />
+          <input type="text" placeholder="Relationship with Nominee" class="border p-2 rounded w-full" required />
+          <input type="text" placeholder="Nominee DOB (dd-mm-yyyy)"
+                 onfocus="this.type='date'" onblur="if(!this.value)this.type='text'"
+                 class="border p-2 rounded w-full" required />
+          <input type="number" placeholder="Nominee Age" class="border p-2 rounded w-full" required />
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+          <label class="block w-full">Upload Your Photo
+            <input type="file" accept="image/*" class="border p-2 rounded w-full mt-1" required />
+          </label>
+          <label class="block w-full">Upload Aadhar Card
+            <input type="file" class="border p-2 rounded w-full mt-1" required />
+          </label>
+          <label class="block w-full">Upload PAN Card
+            <input type="file" class="border p-2 rounded w-full mt-1" required />
+          </label>
+          <label class="block w-full">Cancel Cheque or Passbook
+            <input type="file" class="border p-2 rounded w-full mt-1" required />
+          </label>
+        </div>
+
+        <div class="flex justify-end gap-4 pt-4">
+          <button class="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400" onclick="document.getElementById('joinModal').close()">Cancel</button>
+          <button class="bg-blue-900 text-white px-6 py-2 rounded hover:bg-blue-800">Submit</button>
+        </div>
+      </form>
+    </dialog>
+  </header>
+
+  <!-- HERO -->
+  <section class="py-16 bg-gradient-to-r from-blue-100 to-purple-50">
+    <div class="container mx-auto px-6">
+      <h1 class="text-4xl md:text-5xl font-extrabold text-gray-800">Mutual Funds</h1>
+      <p class="mt-3 text-lg text-gray-600 max-w-3xl">
+        Simple, diversified and professionally managed investment option for every goal—short, medium or long term.
+      </p>
+      <div class="mt-6 flex gap-3">
+        <a href="#ai-fin-search" class="px-5 py-3 rounded-full bg-blue-900 text-white hover:bg-blue-800">Ask a question</a>
+        <a href="#types" class="px-5 py-3 rounded-full bg-white border hover:bg-blue-50">Types</a>
+        <a href="#why" class="px-5 py-3 rounded-full bg-white border hover:bg-blue-50">Why Invest</a>
+        <a href="#faq" class="px-5 py-3 rounded-full bg-white border hover:bg-blue-50">FAQ</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==== AI FINANCE SEARCH (Google-like) ==== -->
+  <section id="ai-fin-search" class="py-16 bg-gradient-to-r from-blue-50 to-purple-50">
+    <div class="container mx-auto px-6">
+      <div class="max-w-3xl mx-auto">
+        <!-- Search box -->
+        <div class="bg-white/90 backdrop-blur rounded-2xl shadow-xl p-4 md:p-6">
+          <div class="flex items-center gap-3">
+            <img src="assets/images/logo.png" alt="Blue Sparrow Capital" class="w-10 h-10 rounded-full bg-white p-1 shadow object-contain" />
+            <input id="finSearchInput" type="text"
+                   placeholder="Type your query… e.g. 'child ke liye 10 lakh 10 years', '5 flexi cap fund list'"
+                   class="flex-1 border rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-900" />
+            <button id="finSearchBtn"
+                    class="shrink-0 px-5 py-3 rounded-xl bg-blue-900 text-white hover:bg-blue-800">
+              Search
+            </button>
+          </div>
+        </div>
+
+        <!-- Answer -->
+        <div id="finAnswer" class="mt-6 hidden">
+          <article class="prose max-w-none bg-white rounded-2xl shadow p-5 leading-relaxed">
+            <div id="finAnswerText" class="text-gray-800 whitespace-pre-line"></div>
+          </article>
+        </div>
+
+        <!-- KPIs (optional if numbers available) -->
+        <div id="finKPIs" class="mt-6 hidden">
+          <div class="bg-white rounded-2xl shadow p-5">
+            <div class="grid md:grid-cols-3 gap-3">
+              <div class="border rounded-xl p-3">
+                <div class="text-xs text-gray-500">Goal</div>
+                <div id="kpiGoal" class="text-lg font-bold text-gray-900">—</div>
+              </div>
+              <div class="border rounded-xl p-3">
+                <div class="text-xs text-gray-500">Horizon</div>
+                <div id="kpiYears" class="text-lg font-bold text-gray-900">—</div>
+              </div>
+              <div class="border rounded-xl p-3">
+                <div class="text-xs text-gray-500">Assumed Return</div>
+                <div id="kpiReturn" class="text-lg font-bold text-gray-900">—</div>
+              </div>
+            </div>
+          </div>
+
+          <div id="finNumbers" class="grid md:grid-cols-2 gap-4 mt-4">
+            <div class="bg-blue-900 text-white rounded-2xl shadow p-5">
+              <div class="text-sm opacity-90">Estimated SIP</div>
+              <div id="kpiSIP" class="text-3xl font-extrabold mt-1">—</div>
+            </div>
+            <div class="bg-white rounded-2xl shadow p-5">
+              <div class="text-sm text-gray-600">Estimated Lumpsum (today)</div>
+              <div id="kpiLump" class="text-2xl font-extrabold text-blue-900 mt-1">—</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Categories -->
+        <div id="finCats" class="mt-6 hidden grid md:grid-cols-2 gap-4"></div>
+
+        <p class="mt-6 text-xs text-gray-500 text-center">
+          Educational assistant — not investment advice. Markets are risky; read all scheme documents carefully.
+        </p>
+      </div>
+    </div>
+
+    <script>
+      /* ---------- AI Search (improved error handling) ---------- */
+      const input  = document.getElementById('finSearchInput');
+      const btn    = document.getElementById('finSearchBtn');
+      const ansBox = document.getElementById('finAnswer');
+      const ansTxt = document.getElementById('finAnswerText');
+      const kpis   = document.getElementById('finKPIs');
+      const cats   = document.getElementById('finCats');
+
+      const API_URL = window.location.origin + '/api/ai-finance';
+      const INR2 = n => '₹' + (Math.round(n).toLocaleString('en-IN'));
+
+      async function callServer(q){
+        const res = await fetch(API_URL, {
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body: JSON.stringify({ query:q })
+        });
+        let data = {};
+        try { data = await res.json(); } catch (_) {}
+
+        if (!res.ok) {
+          const err = new Error(data?.answer || res.statusText || 'Server error');
+          err.payload = data;
+          throw err;
+        }
+        return data;
+      }
+
+      function safeSet(id, val){ const el = document.getElementById(id); if (el) el.textContent = val; }
+
+      function render(payload){
+        ansBox.classList.remove('hidden');
+        ansTxt.textContent = (payload.answer || 'Sorry, no answer right now.');
+
+        const hasNumbers = Number.isFinite(payload.goal) && payload.goal > 0;
+        if (hasNumbers){
+          kpis.classList.remove('hidden');
+          safeSet('kpiGoal', INR2(payload.goal));
+          safeSet('kpiYears', (payload.years||'—') + (payload.years?' yrs':'' ));
+          safeSet('kpiReturn', Number.isFinite(payload.assumedReturn) ? Math.round(payload.assumedReturn*100)+'% p.a.' : '—');
+          safeSet('kpiSIP',  payload.sip  ? INR2(payload.sip)  : '—');
+          safeSet('kpiLump', payload.lump ? INR2(payload.lump) : '—');
+        } else {
+          kpis.classList.add('hidden');
+        }
+
+        cats.innerHTML = '';
+        if (Array.isArray(payload.categories) && payload.categories.length){
+          cats.classList.remove('hidden');
+          cats.innerHTML = payload.categories.map(c => `
+            <div class="bg-white rounded-xl border p-4">
+              <div class="font-semibold text-blue-900">${c.name}</div>
+              <ul class="mt-2 text-gray-800">
+                ${c.funds.map(f => `<li class="py-1">• ${f}</li>`).join('')}
+              </ul>
+            </div>
+          `).join('');
+        } else {
+          cats.classList.add('hidden');
+        }
+      }
+
+      async function handleSearch(){
+        const q = (input.value||'').trim();
+        if (!q){ ansBox.classList.add('hidden'); kpis.classList.add('hidden'); cats.classList.add('hidden'); return; }
+        ansBox.classList.remove('hidden'); ansTxt.textContent = 'Thinking…';
+        try{
+          const payload = await callServer(q);
+          render(payload);
+        }catch(e){
+          const msg = e?.payload?.answer || e?.message || 'Server error. Please try again.';
+          ansTxt.textContent = msg;
+          kpis.classList.add('hidden'); 
+          cats.classList.add('hidden');
+          console.error('ai-finance failed:', e);
+        }
+      }
+
+      btn.addEventListener('click', handleSearch);
+      input.addEventListener('keydown', e => { if (e.key === 'Enter'){ e.preventDefault(); handleSearch(); } });
+    </script>
+  </section>
+
+  <!-- WHAT IS MF -->
+  <section id="what" class="py-14">
+    <div class="container mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <h2 class="text-3xl font-bold mb-3 text-gray-800">What is a Mutual Fund?</h2>
+        <p class="text-gray-700 leading-relaxed">
+          A mutual fund pools money from many investors and invests it in a diversified portfolio of
+          securities like equities, bonds, money-market instruments or a mix. A professional fund
+          manager handles research, selection and rebalancing. You can invest <em>lumpsum</em> or via
+          <strong>SIP (Systematic Investment Plan)</strong>, and buy/sell at the fund’s <strong>NAV</strong>.
+        </p>
+        <ul class="mt-4 space-y-2 text-gray-700">
+          <li>• Diversification reduces single-stock risk</li>
+          <li>• Professional management & compliance</li>
+          <li>• Liquidity (open-ended funds redeemable on any business day)</li>
+          <li>• Goal-based investing through SIP/STP/SWP</li>
+        </ul>
+      </div>
+      <div class="bg-white rounded-2xl shadow-xl p-6">
+        <h3 class="font-semibold text-blue-900 mb-3">How it works</h3>
+        <ol class="list-decimal ml-5 space-y-2 text-gray-700">
+          <li>You invest (SIP or Lumpsum).</li>
+          <li>Fund house issues units at NAV.</li>
+          <li>Manager invests per the scheme mandate.</li>
+          <li>Returns accrue from market movement & income (dividends/interest).</li>
+          <li>Redeem units at prevailing NAV (exit load may apply).</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- TYPES (short dashes) -->
+  <section id="types" class="py-14 bg-gradient-to-r from-blue-50 to-purple-50">
+    <div class="container mx-auto px-6">
+      <h2 class="text-3xl font-bold text-center text-gray-800 mb-10">Types of Mutual Funds</h2>
+      <style>
+        .risk-row{display:flex;gap:6px;align-items:center}
+        .risk-tick{width:12px;height:4px;border-radius:2px;background:#e5e7eb}
+        .risk-tick.on{background:#ef4444}
+      </style>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-white rounded-xl shadow-lg p-6 flex flex-col">
+          <h3 class="font-semibold text-blue-900 mb-2">Equity Funds</h3>
+          <p class="text-gray-700">Invest majorly in stocks. Higher risk/return. Sub-types: Large Cap, Mid/Small Cap, ELSS, Sectoral/Thematic.</p>
+          <div class="mt-4 space-y-2 text-sm">
+            <div><span class="font-semibold">Time Horizon:</span> 5+ years</div>
+            <div class="flex items-center justify-between"><span class="font-semibold">Risk Meter</span><span class="text-red-600">High</span></div>
+            <div class="risk-row" aria-hidden="true"><span class="risk-tick on"></span><span class="risk-tick on"></span><span class="risk-tick on"></span><span class="risk-tick on"></span><span class="risk-tick on"></span></div>
+          </div>
+          <a href="https://www.assetplus.in/mfd/ARN-252837" target="_blank" rel="noopener"
+             class="self-start inline-block text-center text-base px-3 py-2 rounded-full bg-blue-900 text-white hover:bg-blue-800 mt-8">Top Equity Funds</a>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-lg p-6 flex flex-col">
+          <h3 class="font-semibold text-blue-900 mb-2">Debt Funds</h3>
+          <p class="text-gray-700">Invest in bonds & money-market instruments. Lower volatility.</p>
+          <div class="mt-4 space-y-2 text-sm">
+            <div><span class="font-semibold">Time Horizon:</span> 6–36 months</div>
+            <div class="flex items-center justify-between"><span class="font-semibold">Risk Meter</span><span class="text-yellow-600">Low–Moderate</span></div>
+            <div class="risk-row" aria-hidden="true"><span class="risk-tick on"></span><span class="risk-tick on"></span><span class="risk-tick"></span><span class="risk-tick"></span><span class="risk-tick"></span></div>
+          </div>
+          <a href="https://www.assetplus.in/mfd/ARN-252837" target="_blank" rel="noopener"
+             class="self-start inline-block text-center text-base px-3 py-2 rounded-full bg-blue-900 text-white hover:bg-blue-800 mt-8">Top Debt Funds</a>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-lg p-6 flex flex-col">
+          <h3 class="font-semibold text-blue-900 mb-2">Hybrid Funds</h3>
+          <p class="text-gray-700">Mix of equity and debt. Variants: Aggressive Hybrid, Balanced Advantage, etc.</p>
+          <div class="mt-4 space-y-2 text-sm">
+            <div><span class="font-semibold">Time Horizon:</span> 3–5 years</div>
+            <div class="flex items-center justify-between"><span class="font-semibold">Risk Meter</span><span class="text-orange-600">Moderate</span></div>
+            <div class="risk-row" aria-hidden="true"><span class="risk-tick on"></span><span class="risk-tick on"></span><span class="risk-tick on"></span><span class="risk-tick"></span><span class="risk-tick"></span></div>
+          </div>
+          <a href="https://www.assetplus.in/mfd/ARN-252837" target="_blank" rel="noopener"
+             class="self-start inline-block text-center text-base px-3 py-2 rounded-full bg-blue-900 text-white hover:bg-blue-800 mt-8">Top Hybrid Funds</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY INVEST -->
+  <section id="why" class="py-14">
+    <div class="container mx-auto px-6 grid md:grid-cols-2 gap-10">
+      <div class="bg-white rounded-2xl shadow-xl p-6">
+        <h3 class="text-2xl font-bold text-gray-800 mb-3">Why invest in Mutual Funds?</h3>
+        <ul class="space-y-2 text-gray-700">
+          <li>• Start small with SIP; rupee-cost averaging</li>
+          <li>• Diversification across many securities</li>
+          <li>• Transparent—daily NAVs & factsheets</li>
+          <li>• Professionally managed & regulated</li>
+          <li>• Works for multiple goals as per scheme</li>
+        </ul>
+      </div>
+      <div class="bg-white rounded-2xl shadow-xl p-6">
+        <h3 class="text-2xl font-bold text-gray-800 mb-3">Know the risks & costs</h3>
+        <ul class="space-y-2 text-gray-700">
+          <li>• Market risk: NAVs fluctuate</li>
+          <li>• Interest-rate & credit risk in debt funds</li>
+          <li>• Expense Ratio (TER), Exit Loads may apply</li>
+          <li>• Tax treatment depends on category/holding period</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="py-14">
+    <div class="container mx-auto px-6">
+      <h2 class="text-3xl font-bold text-gray-800 text-center mb-8">FAQs</h2>
+      <div class="max-w-3xl mx-auto space-y-3">
+        <details class="bg-white rounded-xl shadow-md p-4">
+          <summary class="cursor-pointer font-semibold text-blue-900">What’s the difference between SIP and Lumpsum?</summary>
+          <p class="mt-2 text-gray-700">SIP invests a fixed amount at regular intervals and averages the purchase cost. Lumpsum is a one-time investment—best with long horizon.</p>
+        </details>
+        <details class="bg-white rounded-xl shadow-md p-4">
+          <summary class="cursor-pointer font-semibold text-blue-900">How do I choose a fund?</summary>
+          <p class="mt-2 text-gray-700">Match fund type to your goal, risk tolerance and time horizon. Check mandate, allocation, costs, and long-term track record.</p>
+        </details>
+        <details class="bg-white rounded-xl shadow-md p-4">
+          <summary class="cursor-pointer font-semibold text-blue-900">Are mutual funds guaranteed?</summary>
+          <p class="mt-2 text-gray-700">No—mutual funds are market-linked. Capital protection isn’t guaranteed unless specified by the product.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT anchor -->
+  <div id="contact"></div>
+
+  <!-- FOOTER -->
+  <footer class="bg-[#032B73] text-white pt-12">
+    <div class="container mx-auto px-6 grid md:grid-cols-4 gap-10 text-sm pb-10">
+      <div class="text-center md:text-left">
+        <img src="assets/images/logo.png" class="h-16 mx-auto md:mx-0 mb-2" alt="Logo" />
+        <h2 class="text-lg font-semibold mt-2">Blue Sparrow Capital</h2>
+        <p class="italic text-yellow-400 text-sm mb-2">Where Your Money Finds Wings</p>
+        <p class="mb-4">Your trusted partner for comprehensive financial planning and wealth management solutions.</p>
+        <div class="flex justify-center md:justify-start space-x-4 text-lg mt-2">
+          <a href="#" class="hover:text-yellow-400"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="hover:text-yellow-400"><i class="fab fa-x-twitter"></i></a>
+          <a href="#" class="hover:text-yellow-400"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="hover:text-yellow-400"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="hover:text-yellow-400"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="font-bold text-lg text-yellow-400 mb-3">Quick Links</h3>
+        <ul class="space-y-2">
+          <li><a href="index.html#home" class="hover:underline">Home</a></li>
+          <li><a href="index.html#about" class="hover:underline">About Us</a></li>
+          <li><a href="index.html#services" class="hover:underline">Products & Services</a></li>
+          <li><a href="#contact" class="hover:underline">Contact</a></li>
+          <li><a href="#" class="hover:underline">Privacy Policy</a></li>
+          <li><a href="#" class="hover:underline">Terms & Conditions</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="font-bold text-lg text-yellow-400 mb-3">Products</h3>
+        <ul class="space-y-2">
+          <li>Mutual Funds</li>
+          <li>Insurance Solutions</li>
+          <li>Portfolio Management</li>
+          <li>Fixed Deposits</li>
+          <li>Unlisted IPO</li>
+          <li>Loan Solutions</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="font-bold text-lg text-yellow-400 mb-3">Contact Info</h3>
+        <p class="mb-2"><i class="fas fa-map-marker-alt mr-2"></i>123 Financial District, BKC, Mumbai</p>
+        <p class="mb-2"><i class="fas fa-phone-alt mr-2"></i>+91 98765 43210</p>
+        <p><i class="fas fa-envelope mr-2"></i>info@bluesparrowcapital.com</p>
+      </div>
+    </div>
+
+    <div class="text-center text-white/70 text-xs border-t border-white/20 pt-4 pb-6 mt-6">
+      &copy; 2025 <strong>Blue Sparrow Capital</strong>. All Rights Reserved. | ARN-12345 | AMFI Registered Mutual Fund Distributor | SEBI Registered Investment Advisor
+    </div>
+  </footer>
+</body>
+</html>
