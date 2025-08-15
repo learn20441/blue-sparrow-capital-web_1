@@ -1,0 +1,295 @@
+<!DOCTYPE html>   
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blue Sparrow Capital - Financial Product Advisory</title>
+  <!-- Tailwind + React -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/babel-standalone@6.26.0/babel.min.js"></script>
+  <!-- Icons -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    .active-nav {
+      color: #FACC15 !important;
+      border-bottom: 2px solid #FACC15;
+      padding-bottom: 2px;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect } = React;
+
+    function App() {
+      const [expandedProduct, setExpandedProduct] = useState(null);
+      const [activeSection, setActiveSection] = useState('home');
+
+      // UPDATED ORDER + NAMES:
+      // - "Bonds" moved ahead (before Loans)
+      // - "Loan Against Security" renamed to "Value Added" and placed LAST
+      const products = [
+        { title: 'Mutual Funds', desc: 'Diversify your investments with expertly curated mutual fund portfolios.' },
+        { title: 'Insurance', desc: 'Protect your future with comprehensive life, health, and general insurance plans.' },
+        { title: 'Portfolio Management Services (PMS)', desc: 'Personalized investment strategies tailored to your financial goals.' },
+        { title: 'Corporate & Small Finance FD', desc: 'Secure fixed deposits with competitive returns for businesses and individuals.' },
+        { title: 'Unlisted IPO', desc: 'Access exclusive investment opportunities in unlisted companies.' },
+        { title: 'Structured Investment Funds (SIF)', desc: 'Innovative investment solutions for high returns and risk management.' },
+
+        // Bonds moved ahead
+        { title: 'Bonds', desc: 'Invest in safe and reliable bonds for steady income and capital preservation.' },
+
+        { title: 'Loans', desc: 'Personal, Business, Home, LAP, LAS—fast-track approvals and better rates.' },
+
+        // Renamed & placed last
+        { title: 'Value Added', desc: 'Value-added services to enhance your experience — reviews, reports & support.' },
+      ];
+
+      const navLinks = [
+        { id: 'home', label: 'Home', href: '#home' },
+        { id: 'services', label: 'Services', href: '#services' },
+        { id: 'about', label: 'About', href: '#about' },
+        { id: 'contact', label: 'Contact', href: '#contact' },
+      ];
+
+      // Page navigation
+      const goToMutualFunds = () => { window.location.href = 'mutual-funds.html'; };
+      const goToInsurance   = () => { window.location.href = 'insurance.html'; };
+      const goToPMS         = () => { window.location.href = 'pms.html'; };
+      const goToCorporateFD = () => { window.location.href = 'corporate-fd.html'; };
+      const goToUnlistedIPO = () => { window.location.href = 'unlisted-ipo.html'; };
+      const goToSIF         = () => { window.location.href = 'sif.html'; };
+      const goToBonds       = () => { window.location.href = 'bonds.html'; };
+      const goToLoans       = () => { window.location.href = 'loans.html'; };
+
+      // Detect active section when scrolling
+      useEffect(() => {
+        const handleScroll = () => {
+          const sections = ['home', 'services', 'about', 'contact'];
+          let current = 'home';
+          sections.forEach((id) => {
+            const section = document.getElementById(id);
+            if (section && window.scrollY >= section.offsetTop - 100) current = id;
+          });
+          setActiveSection(current);
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+      }, []);
+
+      return (
+        <div className="font-sans text-gray-900 bg-gradient-to-br from-blue-50 to-white min-h-screen">
+          
+          {/* Header (company name added next to logo) */}
+          <header className="bg-gradient-to-r from-blue-900 to-purple-900 text-white py-3 shadow-lg sticky top-0 z-50">
+            <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between">
+              <div className="flex items-center gap-3">
+                <img src="assets/images/logo.png" alt="Blue Sparrow Capital Logo" className="h-16 w-auto mb-2 md:mb-0" />
+                <span className="text-xl font-semibold">Blue Sparrow Capital</span>
+              </div>
+              <nav className="mt-2 md:mt-0 space-x-6 text-lg font-semibold flex items-center">
+                {navLinks.map((link) => (
+                  <a
+                    key={link.id}
+                    href={link.href}
+                    className={`${activeSection === link.id ? 'active-nav' : ''} hover:text-yellow-300 transition`}
+                  >
+                    {link.label}
+                  </a>
+                ))}
+                <button
+                  onClick={() => document.getElementById('joinModal').showModal()}
+                  className="bg-yellow-400 text-blue-900 text-lg px-5 py-2 rounded-full hover:bg-yellow-300 transition duration-300 ml-4"
+                >
+                  Join Us
+                </button>
+              </nav>
+            </div>
+
+            {/* Join Modal */}
+            <dialog id="joinModal" className="rounded-xl p-4 backdrop:bg-black/40 max-w-2xl w-full">
+              <form method="dialog" className="bg-white p-6 rounded-lg shadow-lg space-y-4">
+                <h2 className="text-2xl font-bold text-blue-900 mb-4">Join as Agent</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <input type="text" placeholder="Full Name" className="border p-2 rounded w-full" required />
+                  <input type="tel" placeholder="Mobile Number" className="border p-2 rounded w-full" required />
+                  <input type="email" placeholder="Email Address" className="border p-2 rounded w-full" />
+                </div>
+                <h3 className="text-lg font-semibold text-blue-800 mt-4">Nominee Details</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <input type="text" placeholder="Nominee Name" className="border p-2 rounded w-full" required />
+                  <input type="text" placeholder="Relationship with Nominee" className="border p-2 rounded w-full" required />
+                  <input
+                    type="text"
+                    placeholder="Nominee DOB (dd-mm-yyyy)"
+                    onFocus={(e) => (e.target.type = 'date')}
+                    onBlur={(e) => { if (!e.target.value) e.target.type = 'text'; }}
+                    className="border p-2 rounded w-full"
+                    required
+                  />
+                  <input type="number" placeholder="Nominee Age" className="border p-2 rounded w-full" required />
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                  <label className="block w-full">
+                    Upload Your Photo
+                    <input type="file" accept="image/*" className="border p-2 rounded w-full mt-1" required />
+                  </label>
+                  <label className="block w-full">
+                    Upload Aadhar Card
+                    <input type="file" className="border p-2 rounded w-full mt-1" required />
+                  </label>
+                  <label className="block w-full">
+                    Upload PAN Card
+                    <input type="file" className="border p-2 rounded w-full mt-1" required />
+                  </label>
+                  <label className="block w-full">
+                    Cancel Cheque or Passbook
+                    <input type="file" className="border p-2 rounded w-full mt-1" required />
+                  </label>
+                </div>
+                <div className="flex justify-end space-x-4 pt-4">
+                  <button
+                    className="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400 w-full sm:w-auto"
+                    onClick={() => document.getElementById('joinModal').close()}
+                  >
+                    Cancel
+                  </button>
+                  <button className="bg-blue-900 text-white px-6 py-2 rounded hover:bg-blue-800 w-full sm:w-auto">
+                    Submit
+                  </button>
+                </div>
+              </form>
+            </dialog>
+          </header>
+
+          {/* Hero */}
+          <section id="home" className="bg-gradient-to-r from-blue-100 to-purple-50 py-20 text-center">
+            <div className="container mx-auto px-6">
+              <h2 className="text-5xl font-extrabold mb-4 text-gray-800">Your Trusted Financial Partner</h2>
+              <p className="text-xl mb-8 text-gray-600">Expert guidance on Mutual Funds, Insurance, PMS, Loans, and more.</p>
+              <a
+                href="#contact"
+                onClick={(e) => { e.preventDefault(); document.getElementById('joinModal').showModal(); }}
+                className="bg-gradient-to-r from-blue-900 to-purple-900 text-white px-8 py-4 rounded-full hover:from-blue-700 hover:to-purple-700 transition duration-300 inline-block"
+              >
+                Get Started
+              </a>
+            </div>
+          </section>
+
+          {/* Services */}
+          <section id="services" className="py-16">
+            <div className="container mx-auto px-6">
+              <h2 className="text-4xl font-bold text-center mb-12 text-gray-800">Our Services</h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {products.map((product, index) => {
+                  const isMutualFunds  = product.title === 'Mutual Funds';
+                  const isInsurance    = product.title === 'Insurance';
+                  const isPMS          = product.title.includes('PMS');
+                  const isCorporateFD  = product.title.includes('Corporate & Small Finance FD');
+                  const isUnlistedIPO  = product.title.includes('Unlisted IPO');
+                  const isSIF          = product.title.includes('Structured Investment Funds');
+                  const isBonds        = product.title === 'Bonds';
+                  const isLoans        = product.title === 'Loans';
+                  const isExpanded     = expandedProduct === index;
+
+                  const goIfLink = () => {
+                    if (isMutualFunds)  return goToMutualFunds();
+                    if (isInsurance)    return goToInsurance();
+                    if (isPMS)          return goToPMS();
+                    if (isCorporateFD)  return goToCorporateFD();
+                    if (isUnlistedIPO)  return goToUnlistedIPO();
+                    if (isSIF)          return goToSIF();
+                    if (isBonds)        return goToBonds();   // <-- Wired Bonds
+                    if (isLoans)        return goToLoans();
+                    setExpandedProduct(isExpanded ? null : index);
+                  };
+
+                  return (
+                    <div
+                      key={index}
+                      className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 cursor-pointer border border-transparent hover:border-blue-100"
+                      onMouseEnter={() => setExpandedProduct(index)}
+                      onMouseLeave={() => setExpandedProduct(null)}
+                      onClick={goIfLink}
+                      tabIndex={0}
+                      onKeyDown={(e)=>{ if(e.key==='Enter' || e.key===' ') { e.preventDefault(); goIfLink(); } }}
+                      role={(isMutualFunds||isInsurance||isPMS||isCorporateFD||isUnlistedIPO||isSIF||isBonds||isLoans) ? 'link' : 'button'}
+                      aria-label={`Open ${product.title} page`}
+                    >
+                      <h3 className="text-xl font-semibold mb-2 text-blue-900 flex items-center justify-between">
+                        {product.title}
+                        <i className={`fa-solid ${isExpanded ? 'fa-chevron-up' : 'fa-chevron-down'} text-blue-900/70`}></i>
+                      </h3>
+                      {isExpanded && <p className="mt-2 text-gray-600">{product.desc}</p>}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </section>
+
+          {/* About */}
+          <section id="about" className="py-16 bg-gradient-to-r from-blue-50 to-purple-50">
+            <div className="container mx-auto px-6">
+              <h2 className="text-4xl font-bold text-center mb-12 text-gray-800">About Blue Sparrow Capital</h2>
+              <p className="text-lg text-center max-w-3xl mx-auto text-gray-600">
+                Blue Sparrow Capital is a leading financial advisory firm dedicated to helping you achieve your financial goals.
+              </p>
+            </div>
+          </section>
+
+          {/* Footer */}
+          <footer className="bg-[#032B73] text-white pt-12">
+            <div className="container mx-auto px-6 grid md:grid-cols-4 gap-10 text-sm pb-10">
+              <div>
+                <img src="assets/images/logo.png" className="h-16 mb-2" alt="Logo" />
+                <h2 className="text-lg font-semibold">Blue Sparrow Capital</h2>
+                <p className="italic text-yellow-400 text-sm mb-2">Where Your Money Finds Wings</p>
+                <p>Your trusted partner for comprehensive financial planning.</p>
+              </div>
+              <div>
+                <h3 className="font-bold text-lg text-yellow-400 mb-3">Quick Links</h3>
+                <ul className="space-y-2">
+                  <li><a href="#home" className="hover:underline">Home</a></li>
+                  <li><a href="#about" className="hover:underline">About Us</a></li>
+                  <li><a href="#services" className="hover:underline">Products & Services</a></li>
+                  <li><a href="#contact" className="hover:underline">Contact</a></li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="font-bold text-lg text-yellow-400 mb-3">Products</h3>
+                <ul className="space-y-2">
+                  <li>Mutual Funds</li>
+                  <li>Insurance Solutions</li>
+                  <li>Portfolio Management</li>
+                  <li>Fixed Deposits</li>
+                  <li>Unlisted IPO</li>
+                  <li>SIF</li>
+                  <li>Loans</li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="font-bold text-lg text-yellow-400 mb-3">Contact Info</h3>
+                <p className="mb-2"><i className="fas fa-map-marker-alt mr-2"></i>123 Financial District, BKC, Mumbai</p>
+                <p className="mb-2"><i className="fas fa-phone-alt mr-2"></i>+91 98765 43210</p>
+                <p><i className="fas fa-envelope mr-2"></i>info@bluesparrowcapital.com</p>
+              </div>
+            </div>
+            <div className="text-center text-white/70 text-xs border-t border-white/20 pt-4 pb-6 mt-6">
+              &copy; 2025 <strong>Blue Sparrow Capital</strong>. All Rights Reserved.
+            </div>
+          </footer>
+        </div>
+      );
+    }
+
+    ReactDOM.render(<App />, document.getElementById('root'));
+  </script>
+</body>
+</html>

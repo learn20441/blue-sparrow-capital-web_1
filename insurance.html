@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Insurance – Blue Sparrow Capital</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <style>
+    body{font-family:Inter,system-ui,Segoe UI,Roboto,Arial}
+    /* Align header/footer content with main (same as Tailwind max-w-7xl) */
+    .site-container{max-width:80rem;margin-inline:auto;padding-inline:1rem}
+    @media (min-width:640px){.site-container{padding-inline:1.5rem}}
+    @media (min-width:1024px){.site-container{padding-inline:2rem}}
+
+    .blob{filter:blur(40px);opacity:.45}
+    @keyframes floaty{0%{transform:translateY(0)}50%{transform:translateY(-8px)}100%{transform:translateY(0)}}
+    .floaty{animation:floaty 7s ease-in-out infinite}
+
+    .segmented .active:after{
+      content:"";position:absolute;left:12px;right:12px;bottom:-2px;height:3px;border-radius:9999px;
+      background:linear-gradient(90deg,#2563eb,#6366f1);
+    }
+    .chip{display:inline-flex;align-items:center;gap:.5rem;border-radius:9999px;padding:.25rem .75rem;font-weight:700}
+    .glass{background:rgba(255,255,255,.7);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.6)}
+    .shadow-soft{box-shadow:0 10px 25px rgba(2,6,23,.08),0 2px 6px rgba(2,6,23,.06)}
+    .input{border:1px solid #e5e7eb;border-radius:14px;padding:.7rem .9rem;width:100%}
+    .input:focus{outline:none;box-shadow:0 0 0 3px rgba(59,130,246,.25)}
+    .btn{border-radius:12px;padding:.7rem 1rem;font-weight:700}
+    .btn-primary{background:#2563eb;color:#fff}
+    .btn-primary:hover{background:#1d4ed8}
+
+    /* Calculator cards -> modal */
+    .popup{display:none}
+    .popup[open]{display:block}
+  </style>
+</head>
+<body class="text-slate-900 bg-white">
+
+  <!-- Header -->
+  <header class="bg-gradient-to-r from-blue-900 to-purple-900 text-white py-5 shadow-lg">
+    <div class="site-container flex flex-col md:flex-row items-center justify-between">
+      <a href="index.html#home" class="flex items-center gap-3">
+        <img src="assets/images/logo.png" alt="Blue Sparrow Capital Logo" class="h-16 w-auto" />
+        <span class="text-xl font-semibold hidden md:block">Blue Sparrow Capital</span>
+      </a>
+      <nav class="mt-3 md:mt-0 space-x-6 text-base md:text-lg font-semibold flex items-center">
+        <a href="index.html#home" class="hover:text-yellow-300 transition" data-nav="home">Home</a>
+        <a href="index.html#services" class="hover:text-yellow-300 transition" data-nav="services">Services</a>
+        <a href="index.html#about" class="hover:text-yellow-300 transition" data-nav="about">About</a>
+        <a href="index.html#contact" class="hover:text-yellow-300 transition" data-nav="contact">Contact</a>
+        <a href="index.html#contact" class="bg-yellow-400 text-blue-900 text-base md:text-lg px-5 py-2.5 rounded-full hover:bg-yellow-300 transition duration-300 ml-2 md:ml-4">
+          Join Us
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ================= 1) SIMPLE HERO ================= -->
+    <section class="relative overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-br from-sky-50 via-indigo-50 to-white"></div>
+      <div class="absolute -top-10 -left-10 w-72 h-72 rounded-full blob bg-sky-200"></div>
+      <div class="absolute -bottom-16 -right-8 w-80 h-80 rounded-full blob bg-indigo-200"></div>
+
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-20">
+        <div class="max-w-4xl">
+          <h1 class="text-4xl md:text-5xl font-extrabold leading-tight tracking-tight">
+            Insurance that actually protects your life & goals
+          </h1>
+          <p class="mt-4 text-slate-600 text-lg">
+            Motor, Health, Travel, and Term Life — understand plan types & riders, check premium estimates, and calculate the right coverage. No fluff, only clarity.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================== QUICK QUOTE (presentational tabs only) ================== -->
+    <section id="quick-quote" class="relative -mt-10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="rounded-3xl bg-white shadow-soft border border-slate-200 overflow-hidden">
+          <!-- header row -->
+          <div class="p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div>
+              <h2 class="text-2xl md:text-3xl font-extrabold">Get Best Insurance Plans in Your Budget</h2>
+              <p class="text-slate-600">Choose a category below. (Functionality will be added later.)</p>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="chip bg-blue-50 text-blue-700">No spam</span>
+              <span class="chip bg-emerald-50 text-emerald-700">Transparent options</span>
+            </div>
+          </div>
+
+          <!-- big modern tabs -->
+          <div class="px-4 sm:px-6 lg:px-8 pb-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <!-- 2 Wheeler -->
+              <button aria-disabled="true" class="group pointer-events-none text-left">
+                <div class="relative overflow-hidden rounded-2xl border border-slate-200 bg-gradient-to-b from-white to-slate-50 p-6 shadow-soft">
+                  <div class="absolute -top-8 -right-8 h-24 w-24 rounded-full bg-blue-100/60 blur-2xl"></div>
+                  <div class="flex items-center gap-4">
+                    <span class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-600 text-white shadow-md">
+                      <i class="fa-solid fa-motorcycle text-xl"></i>
+                    </span>
+                    <div>
+                      <div class="text-lg font-extrabold">2 Wheeler</div>
+                      <div class="text-slate-600 text-sm">Bike & scooter coverage</div>
+                    </div>
+                  </div>
+                </div>
+              </button>
+
+              <!-- Private Car -->
+              <button aria-disabled="true" class="group pointer-events-none text-left">
+                <div class="relative overflow-hidden rounded-2xl border border-slate-200 bg-gradient-to-b from-white to-slate-50 p-6 shadow-soft">
+                  <div class="absolute -top-8 -right-8 h-24 w-24 rounded-full bg-purple-100/60 blur-2xl"></div>
+                  <div class="flex items-center gap-4">
+                    <span class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-purple-600 text-white shadow-md">
+                      <i class="fa-solid fa-car-side text-xl"></i>
+                    </span>
+                    <div>
+                      <div class="text-lg font-extrabold">Private Car</div>
+                      <div class="text-slate-600 text-sm">Comprehensive & OD/TP</div>
+                    </div>
+                  </div>
+                </div>
+              </button>
+
+              <!-- Commercial -->
+              <button aria-disabled="true" class="group pointer-events-none text-left">
+                <div class="relative overflow-hidden rounded-2xl border border-slate-200 bg-gradient-to-b from-white to-slate-50 p-6 shadow-soft">
+                  <div class="absolute -top-8 -right-8 h-24 w-24 rounded-full bg-amber-100/60 blur-2xl"></div>
+                  <div class="flex items-center gap-4">
+                    <span class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-500 text-white shadow-md">
+                      <i class="fa-solid fa-truck text-xl"></i>
+                    </span>
+                    <div>
+                      <div class="text-lg font-extrabold">Commercial</div>
+                      <div class="text-slate-600 text-sm">GCV / PCV vehicles</div>
+                    </div>
+                  </div>
+                </div>
+              </button>
+
+              <!-- Term Plan -->
+              <button aria-disabled="true" class="group pointer-events-none text-left">
+                <div class="relative overflow-hidden rounded-2xl border border-slate-200 bg-gradient-to-b from-white to-slate-50 p-6 shadow-soft">
+                  <div class="absolute -top-8 -right-8 h-24 w-24 rounded-full bg-teal-100/60 blur-2xl"></div>
+                  <div class="flex items-center gap-4">
+                    <span class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-teal-600 text-white shadow-md">
+                      <i class="fa-solid fa-shield-heart text-xl"></i>
+                    </span>
+                    <div>
+                      <div class="text-lg font-extrabold">Term Plan</div>
+                      <div class="text-slate-600 text-sm">High cover, low premium</div>
+                    </div>
+                  </div>
+                </div>
+              </button>
+
+              <!-- Health Plan -->
+              <button aria-disabled="true" class="group pointer-events-none text-left">
+                <div class="relative overflow-hidden rounded-2xl border border-slate-200 bg-gradient-to-b from-white to-slate-50 p-6 shadow-soft">
+                  <div class="absolute -top-8 -right-8 h-24 w-24 rounded-full bg-rose-100/60 blur-2xl"></div>
+                  <div class="flex items-center gap-4">
+                    <span class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-rose-600 text-white shadow-md">
+                      <i class="fa-solid fa-heart-pulse text-xl"></i>
+                    </span>
+                    <div>
+                      <div class="text-lg font-extrabold">Health Plan</div>
+                      <div class="text-slate-600 text-sm">Individual & family floater</div>
+                    </div>
+                  </div>
+                </div>
+              </button>
+
+              <!-- Travel Plan -->
+              <button aria-disabled="true" class="group pointer-events-none text-left">
+                <div class="relative overflow-hidden rounded-2xl border border-slate-200 bg-gradient-to-b from-white to-slate-50 p-6 shadow-soft">
+                  <div class="absolute -top-8 -right-8 h-24 w-24 rounded-full bg-sky-100/60 blur-2xl"></div>
+                  <div class="flex items-center gap-4">
+                    <span class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-sky-600 text-white shadow-md">
+                      <i class="fa-solid fa-plane-departure text-xl"></i>
+                    </span>
+                    <div>
+                      <div class="text-lg font-extrabold">Travel Plan</div>
+                      <div class="text-slate-600 text-sm">Single & multi-trip</div>
+                    </div>
+                  </div>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 3) TYPES OF INSURANCE WE OFFER ================= -->
+    <section id="ins-types" class="py-14">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-8">
+          <h2 class="text-2xl md:text-3xl font-extrabold">Types of Insurance We Offer</h2>
+          <p class="text-slate-600">Five categories with plan types and riders. Purely informational.</p>
+        </div>
+
+        <div class="segmented flex flex-wrap gap-2 mb-8">
+          <button class="it-tab relative px-4 py-2 rounded-full bg-blue-600 text-white font-semibold active" data-tab="life">Life</button>
+          <button class="it-tab relative px-4 py-2 rounded-full bg-slate-100 text-slate-800 font-semibold" data-tab="health">Health</button>
+          <button class="it-tab relative px-4 py-2 rounded-full bg-slate-100 text-slate-800 font-semibold" data-tab="motor">Motor</button>
+          <button class="it-tab relative px-4 py-2 rounded-full bg-slate-100 text-slate-800 font-semibold" data-tab="travel">Travel</button>
+          <button class="it-tab relative px-4 py-2 rounded-full bg-slate-100 text-slate-800 font-semibold" data-tab="business">Business</button>
+        </div>
+
+        <div class="space-y-8">
+          <!-- LIFE -->
+          <div class="it-panel" id="it-life">
+            <div class="grid md:grid-cols-2 gap-6">
+              <div class="bg-white rounded-2xl shadow-soft border border-slate-200 p-6">
+                <h3 class="text-xl font-bold">Plan Types</h3>
+                <ul class="mt-3 space-y-2 text-slate-700">
+                  <li><span class="font-semibold">Term:</span> high cover, low premium; no maturity value.</li>
+                  <li><span class="font-semibold">Savings/Traditional:</span> guaranteed benefits & survival payouts.</li>
+                  <li><span class="font-semibold">ULIP:</span> market-linked investment + insurance; switch funds.</li>
+                </ul>
+              </div>
+              <div class="bg-white rounded-2xl shadow-soft border border-slate-200 p-6">
+                <h3 class="text-xl font-bold">Riders & What They Do</h3>
+                <ul class="mt-3 space-y-2 text-slate-700">
+                  <li>Accidental Death Benefit — extra payout on accidental death</li>
+                  <li>Accidental Permanent Disability — payout/waiver on disability</li>
+                  <li>Critical Illness — lump sum on listed CI</li>
+                  <li>Waiver of Premium — future premiums waived on CI/disability</li>
+                  <li>Income Benefit — nominee gets monthly income</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- HEALTH -->
+          <div class="it-panel hidden" id="it-health">
+            <div class="grid md:grid-cols-2 gap-6">
+              <div class="bg-white rounded-2xl shadow-soft border border-slate-200 p-6">
+                <h3 class="text-xl font-bold">Plan Types</h3>
+                <ul class="mt-3 space-y-2 text-slate-700">
+                  <li>Individual Health — separate sum insured per person</li>
+                  <li>Family Floater — shared sum insured for family</li>
+                  <li>Senior Citizen Plans — higher coverage, disease-specific benefits</li>
+                  <li>Top-Up / Super Top-Up — extra cover beyond deductible</li>
+                  <li>Critical Illness — one-time payout on diagnosis</li>
+                </ul>
+              </div>
+              <div class="bg-white rounded-2xl shadow-soft border border-slate-200 p-6">
+                <h3 class="text-xl font-bold">Popular Add-ons</h3>
+                <ul class="mt-3 space-y-2 text-slate-700">
+                  <li>Room Rent Waiver/Upgrade</li>
+                  <li>NCB Booster</li>
+                  <li>Restore/Refill Benefit</li>
+                  <li>OPD / Day-care / Maternity</li>
+                  <li>Co-pay Waiver & Hospital Cash</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- MOTOR -->
+          <div class="it-panel hidden" id="it-motor">
+            <div class="grid md:grid-cols-2 gap-6">
+              <div class="bg-white rounded-2xl shadow-soft border border-slate-200 p-6">
+                <h3 class="text-xl font-bold">Types of Plans</h3>
+                <ul class="mt-3 space-y-2 text-slate-700">
+                  <li>Third-Party (TP) Only — legal compliance; no own damage</li>
+                  <li>Own Damage (OD) Only — your vehicle damage; TP separate</li>
+                  <li>Comprehensive (TP + OD) — complete protection</li>
+                </ul>
+              </div>
+              <div class="bg-white rounded-2xl shadow-soft border border-slate-200 p-6">
+                <h3 class="text-xl font-bold">Add-ons & What They Do</h3>
+                <ul class="mt-3 space-y-2 text-slate-700">
+                  <li>Zero Depreciation — higher claim payout on parts</li>
+                  <li>Engine & Gearbox Protect — water/engine damages</li>
+                  <li>Return to Invoice — invoice value in total loss/theft</li>
+                  <li>NCB Protect — retain NCB after claim (conditions)</li>
+                  <li>RSA, Consumables, Key/Lock, Tyre/Rim, PA cover</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- TRAVEL -->
+          <div class="it-panel hidden" id="it-travel">
+            <div class="grid md:grid-cols-2 gap-6">
+              <div class="bg-white rounded-2xl shadow-soft border border-slate-200 p-6">
+                <h3 class="text-xl font-bold">Plan Types</h3>
+                <ul class="mt-3 space-y-2 text-slate-700">
+                  <li>Single Trip / Multi-Trip Annual</li>
+                  <li>Student Travel (long-stay)</li>
+                  <li>Senior/Business/Luxury variants</li>
+                </ul>
+              </div>
+              <div class="bg-white rounded-2xl shadow-soft border border-slate-200 p-6">
+                <h3 class="text-xl font-bold">Add-ons</h3>
+                <ul class="mt-3 space-y-2 text-slate-700">
+                  <li>Adventure Sports Cover</li>
+                  <li>Trip Cancellation/Interruption</li>
+                  <li>Pre-Existing Disease extension (if available)</li>
+                  <li>Gadget Cover / Baggage Delay / Home Burglary</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- BUSINESS -->
+          <div class="it-panel hidden" id="it-business">
+            <div class="grid md:grid-cols-2 gap-6">
+              <div class="bg-white rounded-2xl shadow-soft border border-slate-200 p-6">
+                <h3 class="text-xl font-bold">Core Covers</h3>
+                <ul class="mt-3 space-y-2 text-slate-700">
+                  <li>Shop/Office Package</li>
+                  <li>Fire & Allied Perils (SFSP) + Burglary</li>
+                  <li>Marine Transit (Inland/Import/Export)</li>
+                  <li>Liability (Public/Product) & Professional Indemnity</li>
+                  <li>Workmen/Employee Compensation, D&O</li>
+                  <li>Group Health/PA</li>
+                </ul>
+              </div>
+              <div class="bg-white rounded-2xl shadow-soft border border-slate-200 p-6">
+                <h3 class="text-xl font-bold">Add-ons</h3>
+                <ul class="mt-3 space-y-2 text-slate-700">
+                  <li>Business Interruption (Loss of Profit)</li>
+                  <li>RSMD & STFI, Earthquake/Terrorism</li>
+                  <li>Fidelity Guarantee, Money Insurance</li>
+                  <li>Electronic Equipment/Breakdown</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 4) COVERAGE CALCULATORS (Cards + Popups) ================= -->
+    <section id="calculators" class="py-16 bg-gradient-to-br from-white via-slate-50 to-indigo-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <header class="text-center mb-10">
+          <h2 class="text-3xl md:text-4xl font-extrabold">Know right Coverage for you</h2>
+          <p class="text-slate-600 mt-2">Figure out the right protection for you & your family.</p>
+        </header>
+
+        <!-- Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- HLV -->
+          <button data-open="modal-hlv"
+            class="group rounded-2xl bg-white border border-slate-200 shadow-sm p-6 text-left hover:shadow-lg hover:-translate-y-0.5 transition">
+            <div class="flex items-center gap-4">
+              <span class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-blue-600 text-white">
+                <i class="fa-solid fa-shield-heart text-lg"></i>
+              </span>
+              <div>
+                <h3 class="text-lg font-bold">Get right Term cover</h3>
+                <p class="text-sm text-slate-600">HLV based suggestion</p>
+              </div>
+            </div>
+            <div class="mt-4 text-slate-700 text-sm leading-6">
+              Replace income, clear debts & fund goals. Click to calculate.
+            </div>
+          </button>
+
+          <!-- Health -->
+          <button data-open="modal-health"
+            class="group rounded-2xl bg-white border border-slate-200 shadow-sm p-6 text-left hover:shadow-lg hover:-translate-y-0.5 transition">
+            <div class="flex items-center gap-4">
+              <span class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-rose-600 text-white">
+                <i class="fa-solid fa-heart-pulse text-lg"></i>
+              </span>
+              <div>
+                <h3 class="text-lg font-bold">How much health cover?</h3>
+                <p class="text-sm text-slate-600">City + family size</p>
+              </div>
+            </div>
+            <div class="mt-4 text-slate-700 text-sm leading-6">
+              Quick estimate for base cover. Top-up suggestion included.
+            </div>
+          </button>
+
+          <!-- Retirement -->
+          <button data-open="modal-retire"
+            class="group rounded-2xl bg-white border border-slate-200 shadow-sm p-6 text-left hover:shadow-lg hover:-translate-y-0.5 transition">
+            <div class="flex items-center gap-4">
+              <span class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500 text-white">
+                <i class="fa-solid fa-sack-dollar text-lg"></i>
+              </span>
+              <div>
+                <h3 class="text-lg font-bold">Retirement fund needed</h3>
+                <p class="text-sm text-slate-600">Corpus & safe income</p>
+              </div>
+            </div>
+            <div class="mt-4 text-slate-700 text-sm leading-6">
+              Target corpus from expenses & ages. See monthly income.
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <!-- ======= Modals ======= -->
+      <!-- HLV Modal -->
+      <div id="modal-hlv" class="popup fixed inset-0 z-50" role="dialog" aria-modal="true" aria-labelledby="hlv-title">
+        <div class="absolute inset-0 bg-slate-900/60"></div>
+        <div class="relative mx-auto mt-20 w-[95%] max-w-2xl rounded-2xl bg-white p-6 shadow-2xl">
+          <div class="flex items-center justify-between">
+            <h3 id="hlv-title" class="text-xl font-bold"><i class="fa-solid fa-shield-heart mr-2 text-blue-600"></i>Term Cover (HLV)</h3>
+            <button class="close text-slate-500 hover:text-slate-700" data-close><i class="fa-solid fa-xmark text-xl"></i></button>
+          </div>
+          <p class="text-slate-600 mt-1 text-sm">A quick HLV estimate. We’ll refine later with more inputs.</p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-5">
+            <label class="text-sm">Current age
+              <input id="hlv-age" type="number" class="input mt-1" placeholder="35">
+            </label>
+            <label class="text-sm">Retirement age
+              <input id="hlv-retage" type="number" class="input mt-1" value="60">
+            </label>
+            <label class="text-sm">Annual income (₹)
+              <input id="hlv-inc" type="number" class="input mt-1" placeholder="8,00,000">
+            </label>
+            <label class="text-sm">Annual expenses (₹)
+              <input id="hlv-exp" type="number" class="input mt-1" placeholder="4,80,000">
+            </label>
+            <label class="text-sm">Liabilities (₹)
+              <input id="hlv-debt" type="number" class="input mt-1" value="0">
+            </label>
+            <label class="text-sm">Existing cover + assets (₹)
+              <input id="hlv-assets" type="number" class="input mt-1" value="0">
+            </label>
+          </div>
+
+          <div class="mt-6 flex items-center gap-3">
+            <button id="btn-hlv" class="btn btn-primary">Calculate</button>
+            <div id="out-hlv" class="hidden rounded-xl bg-emerald-50 text-emerald-700 px-3 py-2 text-sm font-semibold">
+              Recommended cover: <span id="val-hlv" class="font-extrabold"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Health Modal -->
+      <div id="modal-health" class="popup fixed inset-0 z-50" role="dialog" aria-modal="true" aria-labelledby="health-title">
+        <div class="absolute inset-0 bg-slate-900/60"></div>
+        <div class="relative mx-auto mt-20 w-[95%] max-w-2xl rounded-2xl bg-white p-6 shadow-2xl">
+          <div class="flex items-center justify-between">
+            <h3 id="health-title" class="text-xl font-bold"><i class="fa-solid fa-heart-pulse mr-2 text-rose-600"></i>Health Cover</h3>
+            <button class="close text-slate-500 hover:text-slate-700" data-close><i class="fa-solid fa-xmark text-xl"></i></button>
+          </div>
+          <p class="text-slate-600 mt-1 text-sm">Fast heuristic based on city & family size (with top-up idea).</p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-5">
+            <label class="text-sm">City/Tier
+              <select id="hc-city" class="input mt-1">
+                <option>Metro</option><option>Tier-1</option><option>Tier-2/3</option>
+              </select>
+            </label>
+            <label class="text-sm">Family size
+              <select id="hc-size" class="input mt-1">
+                <option>Individual</option>
+                <option>2 Adults</option>
+                <option>2 Adults + 1 Child</option>
+                <option>2 Adults + 2 Children</option>
+                <option>Parents (Senior)</option>
+              </select>
+            </label>
+            <label class="text-sm sm:col-span-2">Existing cover (₹)
+              <input id="hc-exist" type="number" class="input mt-1" value="0">
+            </label>
+          </div>
+
+          <div class="mt-6 flex items-center gap-3">
+            <button id="btn-health" class="btn btn-primary">Calculate</button>
+            <div id="out-health" class="hidden rounded-xl bg-emerald-50 text-emerald-700 px-3 py-2 text-sm font-semibold">
+              Base: <span id="val-hc-base" class="font-extrabold"></span> • Top-up: <span id="val-hc-topup" class="font-extrabold"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Retirement Modal -->
+      <div id="modal-retire" class="popup fixed inset-0 z-50" role="dialog" aria-modal="true" aria-labelledby="ret-title">
+        <div class="absolute inset-0 bg-slate-900/60"></div>
+        <div class="relative mx-auto mt-20 w-[95%] max-w-2xl rounded-2xl bg-white p-6 shadow-2xl">
+          <div class="flex items-center justify-between">
+            <h3 id="ret-title" class="text-xl font-bold"><i class="fa-solid fa-sack-dollar mr-2 text-amber-500"></i>Retirement Fund</h3>
+            <button class="close text-slate-500 hover:text-slate-700" data-close><i class="fa-solid fa-xmark text-xl"></i></button>
+          </div>
+          <p class="text-slate-600 mt-1 text-sm">Target corpus & a safe monthly income at retirement.</p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-5">
+            <label class="text-sm">Current age
+              <input id="ret-age" type="number" class="input mt-1" placeholder="32">
+            </label>
+            <label class="text-sm">Retirement age
+              <input id="ret-retage" type="number" class="input mt-1" value="60">
+            </label>
+            <label class="text-sm sm:col-span-2">Monthly expenses now (₹)
+              <input id="ret-exp" type="number" class="input mt-1" placeholder="60,000">
+            </label>
+          </div>
+
+          <div class="mt-6 flex items-center gap-3">
+            <button id="btn-ret" class="btn btn-primary">Calculate</button>
+            <div id="out-ret" class="hidden rounded-xl bg-emerald-50 text-emerald-700 px-3 py-2 text-sm font-semibold">
+              Corpus: <span id="val-ret-corpus" class="font-extrabold"></span> • Monthly income (safe): <span id="val-ret-inc" class="font-extrabold"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer (aligned using .site-container) -->
+  <footer class="bg-[#032B73] text-white pt-12">
+    <div class="site-container">
+      <div class="grid md:grid-cols-4 gap-10 text-sm pb-10">
+        <div class="text-center md:text-left">
+          <img src="assets/images/logo.png" class="h-16 mx-auto md:mx-0 mb-2" alt="Logo" />
+          <h2 class="text-lg font-semibold mt-2">Blue Sparrow Capital</h2>
+          <p class="italic text-yellow-400 text-sm mb-2">Where Your Money Finds Wings</p>
+          <p class="mb-4">Your trusted partner for comprehensive financial planning and wealth management solutions.</p>
+          <div class="flex justify-center md:justify-start space-x-4 text-lg mt-2">
+            <a href="#" class="hover:text-yellow-400" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="hover:text-yellow-400" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+            <a href="#" class="hover:text-yellow-400" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="hover:text-yellow-400" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="hover:text-yellow-400" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="font-bold text-lg text-yellow-400 mb-3">Quick Links</h3>
+          <ul class="space-y-2">
+            <li><a href="index.html#home" class="hover:underline">Home</a></li>
+            <li><a href="index.html#about" class="hover:underline">About Us</a></li>
+            <li><a href="index.html#services" class="hover:underline">Products & Services</a></li>
+            <li><a href="index.html#contact" class="hover:underline">Contact</a></li>
+            <li><a href="#" class="hover:underline">Privacy Policy</a></li>
+            <li><a href="#" class="hover:underline">Terms & Conditions</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-bold text-lg text-yellow-400 mb-3">Products</h3>
+          <ul class="space-y-2">
+            <li>Mutual Funds</li>
+            <li>Insurance Solutions</li>
+            <li>Portfolio Management</li>
+            <li>Fixed Deposits</li>
+            <li>Unlisted IPO</li>
+            <li>Loan Solutions</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-bold text-lg text-yellow-400 mb-3">Contact Info</h3>
+          <p class="mb-2"><i class="fas fa-map-marker-alt mr-2"></i>123 Financial District, BKC, Mumbai</p>
+          <p class="mb-2"><i class="fas fa-phone-alt mr-2"></i>+91 98765 43210</p>
+          <p><i class="fas fa-envelope mr-2"></i>info@bluesparrowcapital.com</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="border-t border-white/20 mt-6">
+      <div class="site-container">
+        <div class="text-center text-white/70 text-xs pt-4 pb-6">
+          &copy; <span id="year"></span> <strong>Blue Sparrow Capital</strong>. All Rights Reserved. | ARN-12345 | AMFI Registered Mutual Fund Distributor | SEBI Registered Investment Advisor
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= SCRIPTS ================= -->
+  <script>
+    // dynamic year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Insurance Types tabs
+    (function(){
+      const tabs = document.querySelectorAll('.it-tab');
+      const panels = {
+        life: document.getElementById('it-life'),
+        health: document.getElementById('it-health'),
+        motor: document.getElementById('it-motor'),
+        travel: document.getElementById('it-travel'),
+        business: document.getElementById('it-business'),
+      };
+      function setTab(tab){
+        tabs.forEach(b=>{
+          const active = b.dataset.tab===tab;
+          b.classList.toggle('bg-blue-600',active);
+          b.classList.toggle('text-white',active);
+          b.classList.toggle('bg-slate-100',!active);
+          b.classList.toggle('text-slate-800',!active);
+          b.classList.toggle('active',active);
+        });
+        Object.entries(panels).forEach(([k,el])=>el.classList.toggle('hidden',k!==tab));
+      }
+      tabs.forEach(b=>b.addEventListener('click',()=>setTab(b.dataset.tab)));
+      setTab('life');
+    })();
+
+    // ---------- Helpers ----------
+    const inr = n => '₹' + (Math.round(Number(n||0))).toLocaleString('en-IN');
+
+    // Open/Close modal
+    document.querySelectorAll('[data-open]').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        document.getElementById(btn.dataset.open).setAttribute('open','');
+        document.body.classList.add('overflow-hidden');
+      });
+    });
+    document.querySelectorAll('[data-close]').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        btn.closest('.popup').removeAttribute('open');
+        document.body.classList.remove('overflow-hidden');
+      });
+    });
+    // close on clicking the dark backdrop
+    document.querySelectorAll('.popup').forEach(pop=>{
+      pop.addEventListener('click', (e)=>{ if(e.target===pop) { pop.removeAttribute('open'); document.body.classList.remove('overflow-hidden'); }});
+    });
+
+    // ---------- HLV calc (simple heuristic) ----------
+    document.getElementById('btn-hlv').addEventListener('click', ()=>{
+      const age = +document.getElementById('hlv-age').value || 0;
+      const retAge = +document.getElementById('hlv-retage').value || 60;
+      const inc = +document.getElementById('hlv-inc').value || 0;
+      const exp = +document.getElementById('hlv-exp').value || 0;
+      const debt = +document.getElementById('hlv-debt').value || 0;
+      const assets = +document.getElementById('hlv-assets').value || 0;
+
+      const years = Math.max(0, retAge - age);
+      // income replacement on 60% of income (post-tax) for remaining years; floor 10x income
+      const incomeNeed = Math.max(inc*0.6*years, inc*10);
+      const cover = Math.max(0, incomeNeed + debt - assets - Math.max(0, exp*years*0.1)); // tiny adj with expenses
+      document.getElementById('val-hlv').textContent = inr(cover);
+      document.getElementById('out-hlv').classList.remove('hidden');
+    });
+
+    // ---------- Health cover heuristic ----------
+    document.getElementById('btn-health').addEventListener('click', ()=>{
+      const city = document.getElementById('hc-city').value;
+      const size = document.getElementById('hc-size').value;
+      const existing = +document.getElementById('hc-exist').value || 0;
+
+      const cityBase = city==='Metro' ? 8 : (city==='Tier-1' ? 6 : 5); // in lakhs
+      const sizeAdj = {
+        'Individual': 1,
+        '2 Adults': 1.5,
+        '2 Adults + 1 Child': 2,
+        '2 Adults + 2 Children': 2.5,
+        'Parents (Senior)': 3
+      }[size] || 1;
+
+      let base = cityBase * sizeAdj * 100000;  // INR
+      base = Math.max(base, 500000);           // minimum 5L
+      let target = Math.max(base, 2000000);    // try to reach 20L overall
+      const topup = Math.max(0, target - Math.max(existing, base));
+
+      document.getElementById('val-hc-base').textContent = inr(Math.round(base/100000)*100000);
+      document.getElementById('val-hc-topup').textContent = inr(Math.round(topup/100000)*100000);
+      document.getElementById('out-health').classList.remove('hidden');
+    });
+
+    // ---------- Retirement corpus + safe income ----------
+    document.getElementById('btn-ret').addEventListener('click', ()=>{
+      const age = +document.getElementById('ret-age').value || 0;
+      const retAge = +document.getElementById('ret-retage').value || 60;
+      const mExp = +document.getElementById('ret-exp').value || 0;
+
+      const years = Math.max(0, retAge - age);
+      const infl = 0.06; // 6% inflation
+      const swr = 0.04;  // 4% safe withdrawal
+
+      const expAtRet = mExp * Math.pow(1+infl, years);
+      const corpus = (expAtRet*12) / swr;
+      const safeMonthly = corpus * swr / 12;
+
+      document.getElementById('val-ret-corpus').textContent = inr(Math.round(corpus/100000)*100000);
+      document.getElementById('val-ret-inc').textContent = inr(Math.round(safeMonthly/1000)*1000);
+      document.getElementById('out-ret').classList.remove('hidden');
+    });
+  </script>
+</body>
+</html>

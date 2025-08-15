@@ -1,0 +1,162 @@
+{
+  "summary": {
+    "title": "Income Plan — Aggressive",
+    "corpus_inr": 10000000,
+    "monthly_swp_inr": 70000,
+    "equity_pct": 70,
+    "stability_pct": 25,
+    "liquid_pct": 5,
+    "notes": "Start at ~0.7%/month SWP; annual review with guardrails."
+  },
+  "funds": [
+    {
+      "category": "Flexi Cap",
+      "scheme": "Parag Parikh Flexi Cap Fund",
+      "why": "Core diversified equity; long-term consistency.",
+      "nav": "₹76.23",
+      "cagr_1y": "18.5%",
+      "cagr_3y": "20.1%",
+      "cagr_5y": "22.8%",
+      "aum_cr": "56240",
+      "expense": "1.89%",
+      "riskometer": "High",
+      "allocation_pct": 14
+    },
+    {
+      "category": "Flexi Cap",
+      "scheme": "HDFC Flexi Cap Fund",
+      "why": "Large-cap bias with flexible mandate.",
+      "nav": "₹109.40",
+      "cagr_1y": "17.2%",
+      "cagr_3y": "16.4%",
+      "cagr_5y": "18.3%",
+      "aum_cr": "56521",
+      "expense": "1.53%",
+      "riskometer": "High",
+      "allocation_pct": 14
+    },
+    {
+      "category": "Mid Cap",
+      "scheme": "HDFC Mid-Cap Opportunities Fund",
+      "why": "Established midcap strategy for core growth.",
+      "nav": "₹161.80",
+      "cagr_1y": "25.4%",
+      "cagr_3y": "22.3%",
+      "cagr_5y": "21.1%",
+      "aum_cr": "70110",
+      "expense": "1.67%",
+      "riskometer": "Very High",
+      "allocation_pct": 9
+    },
+    {
+      "category": "Mid Cap",
+      "scheme": "Kotak Emerging Equity Fund",
+      "why": "Diversified midcap exposure; process-driven.",
+      "nav": "₹89.10",
+      "cagr_1y": "24.1%",
+      "cagr_3y": "21.0%",
+      "cagr_5y": "20.2%",
+      "aum_cr": "39652",
+      "expense": "1.79%",
+      "riskometer": "Very High",
+      "allocation_pct": 8
+    },
+    {
+      "category": "Small Cap",
+      "scheme": "Nippon India Small Cap Fund",
+      "why": "Long-run wealth compounding; size filter.",
+      "nav": "₹166.45",
+      "cagr_1y": "32.6%",
+      "cagr_3y": "28.2%",
+      "cagr_5y": "27.1%",
+      "aum_cr": "54782",
+      "expense": "1.91%",
+      "riskometer": "Very High",
+      "allocation_pct": 8
+    },
+    {
+      "category": "Small Cap",
+      "scheme": "Quant Small Cap Fund",
+      "why": "Tactical small-cap style; satellite weight.",
+      "nav": "₹69.70",
+      "cagr_1y": "34.9%",
+      "cagr_3y": "31.3%",
+      "cagr_5y": "29.0%",
+      "aum_cr": "22410",
+      "expense": "2.10%",
+      "riskometer": "Very High",
+      "allocation_pct": 6
+    },
+    {
+      "category": "Focused",
+      "scheme": "SBI Focused Equity Fund",
+      "why": "Concentrated, large/mid blend; satellite alpha.",
+      "nav": "₹450.30",
+      "cagr_1y": "20.2%",
+      "cagr_3y": "18.4%",
+      "cagr_5y": "17.9%",
+      "aum_cr": "32540",
+      "expense": "1.66%",
+      "riskometer": "High",
+      "allocation_pct": 6
+    },
+    {
+      "category": "Focused",
+      "scheme": "Motilal Oswal Focused 25 Fund",
+      "why": "Focused portfolio with quality bias.",
+      "nav": "₹47.85",
+      "cagr_1y": "19.1%",
+      "cagr_3y": "16.8%",
+      "cagr_5y": "17.0%",
+      "aum_cr": "21430",
+      "expense": "1.70%",
+      "riskometer": "High",
+      "allocation_pct": 5
+    },
+    {
+      "category": "Balanced Advantage",
+      "scheme": "ICICI Prudential Balanced Advantage Fund",
+      "why": "Dynamic equity-debt; smoother SWP experience.",
+      "nav": "₹58.14",
+      "cagr_1y": "14.1%",
+      "cagr_3y": "12.5%",
+      "cagr_5y": "13.9%",
+      "aum_cr": "52860",
+      "expense": "1.78%",
+      "riskometer": "Moderate to High",
+      "allocation_pct": 15
+    },
+    {
+      "category": "Dividend-Oriented Index/Yield",
+      "scheme": "UTI Nifty Dividend Opportunities 50",
+      "why": "Dividend-yield tilt for cash-flow stability.",
+      "nav": "₹28.10",
+      "cagr_1y": "12.4%",
+      "cagr_3y": "11.1%",
+      "cagr_5y": "12.3%",
+      "aum_cr": "4680",
+      "expense": "0.90%",
+      "riskometer": "Moderate to High",
+      "allocation_pct": 10
+    },
+    {
+      "category": "Liquid (Buffer)",
+      "scheme": "HDFC Liquid Fund",
+      "why": "6–9 months SWP buffer; liquidity only.",
+      "nav": "₹4155.25",
+      "cagr_1y": "6.7%",
+      "cagr_3y": "5.5%",
+      "cagr_5y": "5.7%",
+      "aum_cr": "93500",
+      "expense": "0.25%",
+      "riskometer": "Low to Moderate",
+      "allocation_pct": 5
+    }
+  ],
+  "guardrails": {
+    "trim_if_drawdown_gt": "10%",
+    "stepup_if_return_gt": "8%",
+    "stepup_pct": "3–5%"
+  },
+  "disclaimer": "Educational illustration. Read all scheme documents carefully."
+}

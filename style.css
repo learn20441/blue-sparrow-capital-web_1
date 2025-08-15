@@ -1,0 +1,229 @@
+/* Reset and Base */
+body, h1, h2, h3, h4, p, ul {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  line-height: 1.6;
+  background-color: #f9f9f9;
+  color: #222;
+}
+
+/* Layout */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+  padding: 2rem 0;
+}
+
+.section {
+  background-color: #fff;
+  padding: 4rem 0;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 10%;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+
+.logo img {
+  height: 40px;
+}
+
+/* Hero */
+.hero {
+  background: linear-gradient(135deg, #004080, #0059b3);
+  color: white;
+  padding: 5rem 0;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.2rem;
+}
+
+/* Services */
+.grid {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.grid ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.grid li {
+  margin-bottom: 0.75rem;
+  font-size: 1.1rem;
+}
+
+/* Why Choose */
+.features {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.features h4 {
+  font-size: 1.2rem;
+  color: #004080;
+  margin-bottom: 0.5rem;
+}
+
+/* CTA */
+.cta {
+  background-color: #003366;
+  color: white;
+  text-align: center;
+  padding: 3rem 0;
+}
+
+.cta .btn {
+  display: inline-block;
+  margin-top: 1rem;
+  background-color: #f9a826;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Footer */
+footer {
+  background-color: #001f33;
+  color: white;
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.footer-logo {
+  height: 40px;
+  margin-bottom: 0.5rem;
+}
+
+.center {
+  text-align: center;
+}
+footer {
+  background-color: #032B73;
+  color: #ffffff;
+  padding-top: 3rem;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+footer img {
+  height: 3.5rem;
+  margin-bottom: 0.5rem;
+}
+
+footer p {
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+footer .italic {
+  font-style: italic;
+  color: #fcd34d;
+}
+
+footer .text-yellow-400 {
+  color: #facc15;
+}
+
+footer h3 {
+  font-size: 1.125rem;
+  font-weight: bold;
+  margin-bottom: 0.75rem;
+}
+
+footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+footer ul li {
+  margin-bottom: 0.4rem;
+}
+
+footer a {
+  color: white;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+  color: #facc15;
+}
+
+footer .social-icons {
+  display: flex;
+  gap: 0.75rem;
+  font-size: 1.25rem;
+  margin-top: 1rem;
+}
+
+footer .social-icons a {
+  color: white;
+  transition: color 0.3s ease;
+}
+
+footer .social-icons a:hover {
+  color: #facc15;
+}
+
+footer .contact-info i,
+footer .social-icons i {
+  margin-right: 0.4rem;
+}
+
+footer .bottom-bar {
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 1rem 0;
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+/* Responsive Layout */
+@media (max-width: 768px) {
+  footer .container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+}
+
